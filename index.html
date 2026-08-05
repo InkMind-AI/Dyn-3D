@@ -1,146 +1,123 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CausalSplat</title>
 
-  <meta name="title" content="ZeroSplat: Generalized Referring Segmentation in 3D Gaussian Splatting">
-  <meta name="description" content="ZeroSplat is a training-free, zero-feature framework for Generalized Referring 3D Gaussian Splatting Segmentation (GR3DGS), lifting 2D VLM priors into 3D via multi-view geometric constraints.">
-  <meta name="keywords" content="ZeroSplat, 3D Gaussian Splatting, referring segmentation, GR3DGS, vision-language model, 3D scene understanding">
-  <meta name="author" content="Jiayu Ding, Meilu Song, Xiaoyi Zhang, Hongbo Jin, Yichen Jin, Xiangtian Si">
-  <meta name="robots" content="index, follow">
-  <meta name="language" content="English">
+  <meta name="title" content="CausalSplat: Towards Comprehensive Hierarchical Reasoning in 3D Gaussian Splatting">
+  <meta name="description" content="CausalSplat integrates vision-language models with 3D scene graphs for reasoning 3D Gaussian segmentation, with benchmarks Causal-LERF and Causal-ScanNet.">
+  <meta name="keywords" content="CausalSplat, 3D Gaussian Splatting, reasoning segmentation, scene graph, Causal-LERF, Causal-ScanNet">
+  <meta name="author" content="Jiayu Ding, Meilu Song, Yun Chen, Wei Gao, Ge Li">
 
-  <meta property="og:type" content="article">
-  <meta property="og:site_name" content="ZeroSplat">
-  <meta property="og:title" content="ZeroSplat: Generalized Referring Segmentation in 3D Gaussian Splatting">
-  <meta property="og:description" content="A training-free framework for generalized referring segmentation in 3D Gaussian Splatting with intrinsic point-level understanding.">
-  <meta property="og:url" content="https://inkmind-ai.github.io/zerosplat/">
-  <meta property="og:image" content="https://inkmind-ai.github.io/zerosplat/static/images/task_intro.png">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="ZeroSplat GR3DGS task overview">
-  <meta property="article:published_time" content="2026-01-01T00:00:00.000Z">
-  <meta property="article:author" content="Jiayu Ding">
-  <meta property="article:section" content="Research">
-  <meta property="article:tag" content="3D Gaussian Splatting">
-  <meta property="article:tag" content="Referring Segmentation">
+  <meta name="theme-color" content="#2d3748">
+  <link rel="icon" href="./static/images/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="./static/images/favicon.png" type="image/png" sizes="32x32">
 
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="ZeroSplat: Generalized Referring Segmentation in 3D Gaussian Splatting">
-  <meta name="twitter:description" content="Training-free GR3DGS with zero auxiliary feature storage and intrinsic 3D point-level understanding.">
-  <meta name="twitter:image" content="https://inkmind-ai.github.io/zerosplat/static/images/task_intro.png">
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
 
-  <meta name="citation_title" content="ZeroSplat: Generalized Referring Segmentation in 3D Gaussian Splatting">
-  <meta name="citation_author" content="Ding, Jiayu">
-  <meta name="citation_author" content="Song, Meilu">
-  <meta name="citation_author" content="Zhang, Xiaoyi">
-  <meta name="citation_author" content="Jin, Hongbo">
-  <meta name="citation_author" content="Jin, Yichen">
-  <meta name="citation_author" content="Si, Xiangtian">
-  <meta name="citation_publication_date" content="2026">
-  <meta name="citation_conference_title" content="ECCV 2026">
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="stylesheet" href="./static/css/leaderboard.css">
 
-  <meta name="theme-color" content="#0ea5e9">
-  <meta name="msapplication-TileColor" content="#0ea5e9">
-  <link rel="canonical" href="https://inkmind-ai.github.io/zerosplat/">
+  <script type="text/javascript" src="static/js/sort-table.js" defer></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script defer src="./static/js/index.js"></script>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preconnect" href="https://cdn.jsdelivr.net">
-
-  <title>ZeroSplat</title>
-
-  <link rel="icon" type="image/png" href="static/images/icon.png">
-  <link rel="apple-touch-icon" href="static/images/icon.png">
-
-  <link rel="stylesheet" href="static/css/bulma.min.css">
-  <link rel="stylesheet" href="static/css/index.css">
-  <link rel="preload" href="static/css/fontawesome.all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <link rel="preload" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <noscript>
-    <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
-  </noscript>
-
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
-
-  <script defer src="static/js/fontawesome.all.min.js"></script>
-  <script defer src="static/js/index.js"></script>
-
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "ScholarlyArticle",
-    "headline": "ZeroSplat: Generalized Referring Segmentation in 3D Gaussian Splatting",
-    "description": "ZeroSplat is a training-free, zero-feature framework for Generalized Referring 3D Gaussian Splatting Segmentation (GR3DGS).",
-    "author": [
-      {"@type": "Person", "name": "Jiayu Ding", "affiliation": {"@type": "Organization", "name": "Peking University"}},
-      {"@type": "Person", "name": "Meilu Song", "affiliation": {"@type": "Organization", "name": "North China Electric Power University"}},
-      {"@type": "Person", "name": "Xiangtian Si", "affiliation": {"@type": "Organization", "name": "China University of Geosciences"}}
-    ],
-    "datePublished": "2026-01-01",
-    "publisher": {"@type": "Organization", "name": "ECCV 2026"},
-    "url": "https://inkmind-ai.github.io/zerosplat/",
-    "image": "https://inkmind-ai.github.io/zerosplat/static/images/task_intro.png",
-    "keywords": ["3D Gaussian Splatting", "Referring Segmentation", "GR3DGS", "Vision-Language Model"],
-    "isAccessibleForFree": true
-  }
-  </script>
+  <style>
+    .no-sort {
+      cursor: default;
+      pointer-events: none;
+      background-image: none !important;
+    }
+    .figure-img {
+      width: 100%;
+      max-width: 960px;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    }
+    .group-header td {
+      background: #f0f4f8 !important;
+      font-weight: 600;
+      text-align: left !important;
+    }
+    .best-score-text {
+      color: #C6011F;
+      font-weight: 700;
+    }
+    .reasoning-card {
+      border: 1px solid #e8e8e8;
+      border-radius: 10px;
+      padding: 1.25rem;
+      margin-bottom: 1rem;
+      background: #fafafa;
+    }
+    .reasoning-card h4 {
+      margin-bottom: 0.5rem;
+      color: #2c3e50;
+    }
+    .highlight-row {
+      background: #eef6ff !important;
+    }
+  </style>
 </head>
 <body>
 
-  <button class="scroll-to-top" onclick="scrollToTop()" title="Scroll to top" aria-label="Scroll to top">
-    <i class="fas fa-chevron-up"></i>
-  </button>
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title is-bold">
+            <span style="vertical-align: middle">CausalSplat</span>
+          </h1>
+          <h2 class="subtitle is-4 publication-subtitle" style="margin-bottom: 20px;">
+            Towards Comprehensive Hierarchical Reasoning in 3D Gaussian Splatting
+          </h2>
 
-  <main id="main-content">
+          <div class="is-size-5 publication-authors" style="width: 90%; margin: 20px auto;">
+            <span class="author-block"><a href="https://inkmind-ai.github.io/">Jiayu Ding</a><sup>1,*</sup></span>
+            <span class="author-block"><a href="#">Meilu Song</a><sup>2,*</sup></span>
+            <span class="author-block"><a href="#">Yun Chen</a><sup>3,*</sup></span>
+            <span class="author-block"><a href="#">Wei Gao</a><sup>1</sup></span>
+            <span class="author-block"><a href="#">Ge Li</a><sup>1,†</sup></span>
+          </div>
 
-  <!-- Hero -->
-  <section class="hero publication-header">
-    <div class="hero-body">
-      <div class="container is-max-desktop">
-        <div class="columns is-centered">
+          <div class="is-size-6 publication-authors">
+            <span class="author-block"><sup>1</sup>Peking University</span>
+            <span class="author-block"><sup>2</sup>North China Electric Power University</span>
+            <span class="author-block"><sup>3</sup>Hunan University</span>
+          </div>
+          <div class="is-size-6 publication-authors">
+            <span><sup>*</sup>Equal contribution. <sup>†</sup>Corresponding author.</span>
+          </div>
+
           <div class="column has-text-centered">
-            <h1 class="title is-1 publication-title vj-hero-title-cyber">ZeroSplat: Generalized Referring Segmentation in 3D Gaussian Splatting</h1>
-
-            <div class="is-size-5 publication-authors">
-              <span class="author-block">Jiayu Ding<sup>1*</sup></span>
-              <span class="author-block">Meilu Song<sup>2*</sup></span>
-              <span class="author-block">Xiaoyi Zhang<sup>3</sup></span>
-              <span class="author-block">Hongbo Jin<sup>1</sup></span>
-              <span class="author-block">Yichen Jin<sup>1</sup></span>
-              <span class="author-block">Xiangtian Si<sup>3&dagger;</sup></span>
-            </div>
-            <div class="is-size-6 publication-authors">
-              <span class="author-block"><sup>1</sup>Peking University</span>
-              <span class="author-block"><sup>2</sup>North China Electric Power University</span>
-              <span class="author-block"><sup>3</sup>China University of Geosciences</span>
-            </div>
-            <div class="is-size-6 publication-authors">
-              <span class="eql-cntrb"><small><sup>*</sup>Equal contribution. <sup>&dagger;</sup>Corresponding author.</small></span>
-            </div>
-            <div class="is-size-5 publication-authors">
-              <span class="publication-venue">ECCV 2026</span>
-            </div>
-
-            <div class="publication-links mt-4">
+            <div class="publication-links">
               <span class="link-block">
-                <a href="#" class="external-link button is-normal is-rounded is-dark is-disabled" aria-disabled="true">
+                <a href="#" class="external-link button is-normal is-rounded is-dark" aria-disabled="true" style="opacity: 0.6; pointer-events: none;">
                   <span class="icon"><i class="fas fa-file-pdf"></i></span>
                   <span>Paper (Soon)</span>
                 </a>
               </span>
               <span class="link-block">
-                <a href="#" class="external-link button is-normal is-rounded is-dark is-disabled" aria-disabled="true">
+                <a href="#" class="external-link button is-normal is-rounded is-dark" aria-disabled="true" style="opacity: 0.6; pointer-events: none;">
                   <span class="icon"><i class="ai ai-arxiv"></i></span>
                   <span>arXiv (Soon)</span>
                 </a>
               </span>
               <span class="link-block">
-                <a href="#" class="external-link button is-normal is-rounded is-dark is-disabled" aria-disabled="true">
+                <a href="#" class="external-link button is-normal is-rounded is-dark" aria-disabled="true" style="opacity: 0.6; pointer-events: none;">
                   <span class="icon"><i class="fab fa-github"></i></span>
                   <span>Code (Soon)</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="#" class="external-link button is-normal is-rounded is-dark" aria-disabled="true" style="opacity: 0.6; pointer-events: none;">
+                  <span class="icon"><i class="fas fa-database"></i></span>
+                  <span>Data (Soon)</span>
                 </a>
               </span>
             </div>
@@ -148,759 +125,394 @@
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- Task teaser -->
-  <section class="hero is-small teaser-figure">
-    <div class="hero-body">
-      <div class="container is-max-desktop">
-        <div class="columns is-centered">
-          <div class="column is-11">
-            <d-figure id="fig-task-intro">
-              <figure>
-                <img data-zoomable draggable="false" src="static/images/task_intro.png" alt="GR3DGS task overview: zero, single, and multiple targets" loading="eager">
-                <figcaption>
-                  Traditional Referring 3D Gaussian Splatting (R3DGS) is limited to single-target queries. We introduce <strong>Generalized Referring 3D Gaussian Splatting Segmentation (GR3DGS)</strong>, which handles an arbitrary number of targets, including zero, one, or multiple instances, thereby reflecting the ambiguity of real-world language instructions.
-                </figcaption>
-              </figure>
-            </d-figure>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Abstract -->
-  <section class="section hero is-light" id="abstract">
-    <div class="container is-max-desktop">
-      <div class="columns is-centered has-text-centered">
-        <div class="column is-full">
-          <h2 class="title is-3">Abstract</h2>
-          <div class="content has-text-justified">
-            <p>
-              Recent advancements in 3D Gaussian Splatting (3DGS) have enabled language-guided scene understanding. However, existing Referring 3D Gaussian Splatting (R3DGS) methods are fundamentally restricted to single-target queries. To reflect the ambiguity of real-world instructions, we introduce the <strong>Generalized Referring 3D Gaussian Splatting Segmentation (GR3DGS)</strong> task, which requires dynamically segmenting an arbitrary number of targets (0, 1, or <em>N</em>). To facilitate comprehensive evaluation, we construct two new benchmarks: <strong>GR-LERF</strong> and <strong>GR-ScanNet</strong>.
-            </p>
-            <p>
-              Existing R3DGS paradigms exhibit fundamental bottlenecks: they lack intrinsic 3D point-level understanding by operating merely on 2D rendered pixels, and they incur prohibitive computational overhead through per-scene optimization and heavy semantic feature storage. To dismantle these bottlenecks, we propose <strong>ZeroSplat</strong>, a novel training-free and zero-feature framework. ZeroSplat lifts 2D Vision-Language Model (VLM) priors into 3D space through robust multi-view geometric constraints, enabling intrinsic point-level understanding without any additional feature storage. Extensive experiments demonstrate that ZeroSplat significantly outperforms state-of-the-art methods across generalized and single-target scenarios while maintaining exceptional efficiency.
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Key highlights -->
-  <section class="section" id="highlights">
-    <div class="container is-max-desktop">
-      <h2 class="title is-3 has-text-centered">Key Highlights</h2>
-      <div class="columns is-multiline is-centered highlight-cards">
-        <div class="column is-6-tablet is-3-desktop">
-          <div class="highlight-card">
-            <div class="highlight-icon"><i class="fas fa-cubes"></i></div>
-            <h3 class="title is-5">GR3DGS Task</h3>
-            <p>Segment 0, 1, or <em>N</em> targets from free-form language, better aligned with real-world referring instructions.</p>
-          </div>
-        </div>
-        <div class="column is-6-tablet is-3-desktop">
-          <div class="highlight-card">
-            <div class="highlight-icon"><i class="fas fa-bolt"></i></div>
-            <h3 class="title is-5">Training-Free</h3>
-            <p>No per-scene optimization. Plug-and-play inference with zero auxiliary semantic feature storage.</p>
-          </div>
-        </div>
-        <div class="column is-6-tablet is-3-desktop">
-          <div class="highlight-card">
-            <div class="highlight-icon"><i class="fas fa-crosshairs"></i></div>
-            <h3 class="title is-5">Point-Level 3D</h3>
-            <p>Directly operates on 3D Gaussian primitives for intrinsic spatial understanding, not just 2D pixels.</p>
-          </div>
-        </div>
-        <div class="column is-6-tablet is-3-desktop">
-          <div class="highlight-card">
-            <div class="highlight-icon"><i class="fas fa-database"></i></div>
-            <h3 class="title is-5">New Benchmarks</h3>
-            <p><strong>GR-LERF</strong> (pixel-level) and <strong>GR-ScanNet</strong> (point-level) for rigorous GR3DGS evaluation.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Method -->
-  <section class="section hero is-light" id="method">
-    <div class="container is-max-desktop">
-      <h2 class="title is-3 has-text-centered">Method Overview</h2>
-      <p class="subtitle has-text-centered is-5 method-subtitle">
-        A three-stage pipeline connecting unstructured text to 3D geometric anchors
-      </p>
-      <d-figure id="fig-method">
-        <figure>
-          <img data-zoomable draggable="false" src="static/images/method_overview.png" alt="ZeroSplat pipeline overview" loading="lazy">
-          <figcaption>
-            <strong>ZeroSplat pipeline.</strong> (a) Geometry-guided keyframe selection and hierarchical VLM reasoning extract semantic labels and 2D bounding boxes. (b) SAM3 generates multi-view 2D masks that are lifted into 3D Gaussian groups via volume rendering. (c) Multi-view consistency verification and KD-Tree KNN spatial label diffusion refine the final 3D segmentation.
-          </figcaption>
-        </figure>
-      </d-figure>
-
-      <div class="columns is-multiline mt-5 method-stages">
-        <div class="column is-4">
-          <div class="stage-card">
-            <span class="stage-num">01</span>
-            <h3 class="title is-5">VLM Semantic Parsing</h3>
-            <p>Curvature-guided keyframe selection and two-stage VLM interaction extract concise labels and 2D spatial anchors from complex referring text.</p>
-          </div>
-        </div>
-        <div class="column is-4">
-          <div class="stage-card">
-            <span class="stage-num">02</span>
-            <h3 class="title is-5">2D Mask &amp; 3D Lifting</h3>
-            <p>Adaptive view selection and SAM3 mask fusion back-project semantics onto Gaussians, with VLM bounding boxes pruning background artifacts.</p>
-          </div>
-        </div>
-        <div class="column is-4">
-          <div class="stage-card">
-            <span class="stage-num">03</span>
-            <h3 class="title is-5">Geometric Refinement</h3>
-            <p>Cross-view back-projection verification and KNN spatial diffusion enforce multi-view consistency and fill internal structural cavities.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- GR3DGS Results -->
-  <section class="section hero is-light" id="results-gr3dgs">
-    <div class="container is-max-desktop">
-      <h2 class="title is-3 has-text-centered">GR3DGS Results</h2>
-      <div class="content has-text-justified benchmark-text">
-        <p>
-          On <strong>GR-LERF</strong> (pixel-level) and <strong>GR-ScanNet</strong> (point-level), ZeroSplat establishes new state-of-the-art performance. It achieves <strong>50.8</strong> mean mIoU on GR-LERF and <strong>41.2</strong> mIoU on GR-ScanNet, substantially outperforming both pixel-based and point-based baselines. Qualitative results show accurate multi-target segmentation with high recall, while baselines often merge or miss nearby instances.
+<section class="section" style="padding-top: 0;">
+  <div class="container">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <img src="static/images/teaser.png" alt="CausalSplat teaser" class="figure-img"/>
+        <p style="margin-top: 1rem;">
+          Overview of our reasoning segmentation paradigm and benchmark.
+          <strong>Left:</strong> Evolution from open-vocabulary and referring segmentation to complex reasoning driven by implicit intents.
+          <strong>Middle:</strong> Four progressive reasoning levels — commonsense, spatial, affordance, and predictive/counterfactual.
+          <strong>Right:</strong> CausalSplat significantly outperforms SOTA on 2D/3D metrics within Causal-LERF and Causal-ScanNet.
         </p>
       </div>
+    </div>
+  </div>
+</section>
 
-      <div class="results-table-block mt-5">
-        <p class="results-table-caption">
-          <strong>Table 1:</strong> Quantitative results on GR-LERF and GR-ScanNet, measured by mIoU. ZeroSplat significantly outperforms all baselines in both pixel-level and point-level generalized referring segmentation.
-        </p>
-        <div class="results-table-scroll">
-          <table class="results-table">
+<section class="section">
+  <div class="container" style="margin-bottom: 2vh;">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Introduction</h2>
+        <div class="content has-text-justified">
+          <p>
+            While 3D Gaussian Splatting (3DGS) has advanced open-vocabulary scene understanding, existing methods remain confined to <strong>explicit queries</strong>. They struggle to interpret implicit intents, complex spatial constraints, and commonsense reasoning required for practical embodied interactions.
+          </p>
+          <p>
+            To address this gap, we introduce the task of <strong>Reasoning 3D Gaussian Segmentation</strong> and construct two benchmarks, <strong>Causal-LERF</strong> and <strong>Causal-ScanNet</strong>. These benchmarks systematically evaluate commonsense, spatial, affordance, and counterfactual reasoning. Evaluations reveal that current state-of-the-art methods perform poorly on these reasoning challenges.
+          </p>
+          <p>
+            We propose <strong>CausalSplat</strong>, a framework that integrates vision-language models with <strong>3D semantic scene graphs</strong> to disentangle explicit structural perception from implicit logical inference. Extensive experiments demonstrate state-of-the-art performance on our reasoning benchmarks while showing strong generalizability on standard referring and open-vocabulary 3D segmentation tasks.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3 has-text-centered">Hierarchical Reasoning Taxonomy</h2>
+        <div class="content has-text-justified">
+          <div class="reasoning-card">
+            <h4 class="title is-5">1. Spatial Reasoning</h4>
+            <p>Parses absolute and relative geometric relations and 3D topologies such as support, containment, and occlusion. Example: <em>“Find the object occluded under the table that supports a box.”</em></p>
+          </div>
+          <div class="reasoning-card">
+            <h4 class="title is-5">2. Commonsense Reasoning</h4>
+            <p>Aligns LLM prior knowledge with 3D scene instances to interpret implicit semantics. Example: <em>“I just finished a greasy meal and need to clean my mouth.”</em> → locate a napkin by function, not appearance.</p>
+          </div>
+          <div class="reasoning-card">
+            <h4 class="title is-5">3. Affordance Reasoning</h4>
+            <p>Infers whether an object supports embodied actions based on 3D geometry and spatial state. Example: <em>“Find a container with an upward opening for a robotic arm to grasp.”</em></p>
+          </div>
+          <div class="reasoning-card">
+            <h4 class="title is-5">4. Predictive &amp; Counterfactual Reasoning</h4>
+            <p>Models dynamic physical changes and causal relations under hypothetical conditions. Example: <em>“If the bottom red object is removed, which objects will fall?”</em></p>
+          </div>
+          <p>
+            Causal-LERF and Causal-ScanNet contain <strong>231 reasoning instructions</strong> across <strong>14 real indoor scenes</strong>, with distribution: 18.2% spatial, 48.5% commonsense, 16.0% affordance, and 17.3% predictive/counterfactual reasoning.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Method</h2>
+        <div class="content has-text-centered">
+          <img src="static/images/method.png" alt="CausalSplat pipeline" class="figure-img"/>
+          <p style="margin-top: 1rem;">
+            Overview of the proposed CausalSplat pipeline.
+            <strong>(a) Semantic Field Construction:</strong> SAM masks, spatially weighted features, contrastive optimization, and 3D instance assignment.
+            <strong>(b) Semantic Scene Graph Construction &amp; Reasoning:</strong> Multimodal nodes and scale-adaptive edges, with a three-stage VLM reasoning pipeline.
+          </p>
+        </div>
+        <div class="content has-text-justified" style="margin-top: 1.5rem;">
+          <p>
+            CausalSplat separates <strong>explicit structural perception</strong> from <strong>implicit logical inference</strong>. Scene graphs model topological and spatial relations among 3D entities, while a VLM parses implicit queries through instruction parsing, topological reasoning, and decision output.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero is-light is-small">
+  <div class="hero-body has-text-centered">
+    <h1 class="title is-1 mathvista_other">
+      <span class="mathvista_other" style="vertical-align: middle">Benchmark</span>
+    </h1>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-full">
+        <h2 class="title is-3 has-text-centered">Dataset Comparison</h2>
+        <div class="content has-text-centered" style="overflow-x: auto;">
+          <table class="js-sort-table" style="margin: 1.5rem auto; font-size: 14px;">
             <thead>
               <tr>
-                <th rowspan="2">Method</th>
-                <th colspan="5">GR-LERF</th>
-                <th rowspan="2">GR-ScanNet<br>mIoU</th>
-              </tr>
-              <tr>
-                <th>Ramen</th>
-                <th>Teatime</th>
-                <th>Figurines</th>
-                <th>Waldo</th>
-                <th>Mean</th>
+                <th class="no-sort"><strong>Dataset</strong></th>
+                <th class="no-sort"><strong>Task Type</strong></th>
+                <th><strong>Domain</strong></th>
+                <th><strong>Scenes</strong></th>
+                <th><strong>Query Scale</strong></th>
+                <th><strong>Spa.</strong></th>
+                <th><strong>Com.</strong></th>
+                <th><strong>Aff.</strong></th>
+                <th><strong>Cou.</strong></th>
               </tr>
             </thead>
             <tbody>
-              <tr class="group-row">
-                <td colspan="7"><strong>Pixel-based</strong></td>
+              <tr><td style="text-align:left;">LERF</td><td>Open-Vocab Seg.</td><td>2D</td><td>4</td><td>208 Words</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+              <tr><td style="text-align:left;">ScanNet (OVS)</td><td>Open-Vocab Seg.</td><td>3D</td><td>10</td><td>84 Words</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+              <tr><td style="text-align:left;">Ref-LERF</td><td>Ref. Seg.</td><td>2D</td><td>4</td><td>63 Inst.</td><td>✓</td><td>—</td><td>—</td><td>—</td></tr>
+              <tr><td style="text-align:left;">3DAffordSplat</td><td>Reasoning Seg.</td><td>3D Synthetic</td><td>8.3K</td><td>6.6K Inst.</td><td>—</td><td>—</td><td>✓</td><td>—</td></tr>
+              <tr><td style="text-align:left;">REALM3D</td><td>Reasoning Seg.</td><td>2D</td><td>100+</td><td>1K+ Pairs</td><td>✓</td><td>✓</td><td>—</td><td>—</td></tr>
+              <tr class="highlight-row">
+                <td style="text-align:left;"><strong>Causal-LERF (Ours)</strong></td>
+                <td><strong>Reasoning Seg.</strong></td>
+                <td><strong>2D</strong></td>
+                <td><strong>4</strong></td>
+                <td><strong>158 Inst.</strong></td>
+                <td><strong>✓</strong></td>
+                <td><strong>✓</strong></td>
+                <td><strong>✓</strong></td>
+                <td><strong>✓</strong></td>
               </tr>
+              <tr class="highlight-row">
+                <td style="text-align:left;"><strong>Causal-ScanNet (Ours)</strong></td>
+                <td><strong>Reasoning Seg.</strong></td>
+                <td><strong>3D</strong></td>
+                <td><strong>10</strong></td>
+                <td><strong>73 Inst.</strong></td>
+                <td><strong>✓</strong></td>
+                <td><strong>✓</strong></td>
+                <td><strong>✓</strong></td>
+                <td><strong>✓</strong></td>
+              </tr>
+            </tbody>
+          </table>
+          <p style="max-width: 720px; margin: 0 auto;">
+            Spa. = Spatial, Com. = Commonsense, Aff. = Affordance, Cou. = Counterfactual reasoning.
+            Causal-LERF and Causal-ScanNet are the first multi-level reasoning benchmarks for 3DGS covering all four dimensions.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero is-light is-small">
+  <div class="hero-body has-text-centered">
+    <h1 class="title is-1 mathvista_other" id="results">Experiment Results</h1>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="columns is-centered m-6">
+      <div class="column is-full has-text-centered content">
+        <h2 class="title is-3">Quantitative Results — Causal-LERF</h2>
+        <p>
+          2D mIoU (%) on <strong>Causal-LERF</strong> for Reasoning 3D Gaussian Segmentation.
+          Models must localize and segment targets from natural language queries with implicit intents and multi-hop logical constraints.
+        </p>
+        <div style="overflow-x: auto;">
+          <table class="js-sort-table" style="margin: 1rem auto; font-size: 14px;">
+            <thead>
               <tr>
-                <td>LangSplat</td>
-                <td>12.7</td>
-                <td>34.6</td>
-                <td>15.6</td>
-                <td>11.4</td>
-                <td>18.6</td>
-                <td>-</td>
+                <th class="no-sort"><strong>Method</strong></th>
+                <th><strong>Ramen (%)</strong></th>
+                <th><strong>Teatime (%)</strong></th>
+                <th><strong>Figurines (%)</strong></th>
+                <th><strong>Waldo (%)</strong></th>
+                <th><strong>Mean (%)</strong></th>
               </tr>
-              <tr>
-                <td>GOI</td>
-                <td>7.5</td>
-                <td><strong>60.0</strong></td>
-                <td>18.8</td>
-                <td>40.2</td>
-                <td>31.6</td>
-                <td>-</td>
-              </tr>
-              <tr>
-                <td>LEGaussians</td>
-                <td>4.2</td>
-                <td>2.5</td>
-                <td>2.7</td>
-                <td>4.5</td>
-                <td>3.5</td>
-                <td>-</td>
-              </tr>
-              <tr>
-                <td>Occam's LGS</td>
-                <td>9.8</td>
-                <td>45.7</td>
-                <td>16.3</td>
-                <td>12.9</td>
-                <td>21.2</td>
-                <td>-</td>
-              </tr>
-              <tr>
-                <td>GS-Grouping</td>
-                <td>29.1</td>
-                <td>49.2</td>
-                <td>15.6</td>
-                <td>19.3</td>
-                <td>28.3</td>
-                <td>-</td>
-              </tr>
-              <tr>
-                <td>Feature-3DGS</td>
-                <td>1.6</td>
-                <td>11.4</td>
-                <td>0.6</td>
-                <td>17.4</td>
-                <td>7.8</td>
-                <td>-</td>
-              </tr>
-              <tr>
-                <td>ReferSplat</td>
-                <td>4.3</td>
-                <td>10.9</td>
-                <td>11.6</td>
-                <td>8.3</td>
-                <td>8.8</td>
-                <td>-</td>
-              </tr>
-              <tr class="group-row">
-                <td colspan="7"><strong>Point-based</strong></td>
-              </tr>
-              <tr>
-                <td>OpenGaussian</td>
-                <td>7.3</td>
-                <td>10.5</td>
-                <td>4.5</td>
-                <td>9.1</td>
-                <td>7.9</td>
-                <td>19.8</td>
-              </tr>
-              <tr>
-                <td>InstanceGaussian</td>
-                <td>6.9</td>
-                <td>6.8</td>
-                <td>11.3</td>
-                <td>14.7</td>
-                <td>9.9</td>
-                <td>24.5</td>
-              </tr>
-              <tr>
-                <td>Dr.Splat (Top-40)</td>
-                <td>12.0</td>
-                <td>8.7</td>
-                <td>7.1</td>
-                <td>11.7</td>
-                <td>9.9</td>
-                <td>21.5</td>
-              </tr>
-              <tr>
-                <td>LUDVIG</td>
-                <td>25.3</td>
-                <td>32.5</td>
-                <td>23.9</td>
-                <td>13.5</td>
-                <td>23.8</td>
-                <td>15.1</td>
-              </tr>
-              <tr class="ours-row">
-                <td><strong>Ours</strong></td>
-                <td><strong>46.5</strong></td>
-                <td><strong>56.3</strong></td>
-                <td><strong>52.1</strong></td>
-                <td><strong>48.4</strong></td>
-                <td><strong>50.8</strong></td>
-                <td><strong>41.2</strong></td>
-              </tr>
+            </thead>
+            <tbody>
+              <tr class="group-header"><td colspan="6"><em>Open-Vocabulary &amp; Referring Methods</em></td></tr>
+              <tr><td style="text-align:left;">OpenGaussian</td><td>9.6</td><td>4.2</td><td>3.3</td><td>8.2</td><td>6.3</td></tr>
+              <tr><td style="text-align:left;">Dr.Splat</td><td>8.7</td><td>8.8</td><td>16.1</td><td>13.3</td><td>11.7</td></tr>
+              <tr><td style="text-align:left;">InstanceGaussian</td><td>2.7</td><td>4.7</td><td>9.2</td><td>10.5</td><td>6.8</td></tr>
+              <tr><td style="text-align:left;">LUDVIG</td><td>32.6</td><td>19.7</td><td>34.1</td><td>8.0</td><td>23.6</td></tr>
+              <tr><td style="text-align:left;">ReferSplat</td><td>5.2</td><td>16.2</td><td>7.5</td><td>11.1</td><td>10.0</td></tr>
+              <tr><td style="text-align:left;">REALM</td><td>9.4</td><td>14.3</td><td>7.8</td><td>13.9</td><td>11.4</td></tr>
+              <tr class="group-header"><td colspan="6"><em>Reasoning Segmentation (Ours)</em></td></tr>
+              <tr class="highlight-row"><td style="text-align:left;"><strong>CausalSplat (Ours)</strong></td><td>26.2</td><td>68.4</td><td>46.9</td><td>46.5</td><td><strong class="best-score-text">47.0</strong></td></tr>
             </tbody>
           </table>
         </div>
       </div>
+    </div>
 
-      <div class="columns is-centered mt-5">
-        <div class="column is-12">
-          <d-figure id="fig-qual-gr-lerf">
-            <figure>
-              <img data-zoomable draggable="false" src="static/images/qual_gr_lerf.png" alt="Qualitative results on GR-LERF" loading="lazy">
-              <figcaption>Qualitative results on object selection from the <strong>GR-LERF</strong> dataset.</figcaption>
-            </figure>
-          </d-figure>
-        </div>
-      </div>
-
-      <div class="columns is-centered mt-4">
-        <div class="column is-12">
-          <d-figure id="fig-qual-gr-scannet">
-            <figure>
-              <img data-zoomable draggable="false" src="static/images/qual_gr_scannet.png" alt="Qualitative results on GR-ScanNet" loading="lazy">
-              <figcaption>Qualitative results on object selection from the <strong>GR-ScanNet</strong> dataset. ZeroSplat accurately grounds complex spatial and functional queries with crisp 3D boundaries.</figcaption>
-            </figure>
-          </d-figure>
+    <div class="columns is-centered m-6">
+      <div class="column is-full has-text-centered content">
+        <h2 class="title is-3">Quantitative Results — Causal-ScanNet</h2>
+        <p>3D mIoU (%) on <strong>Causal-ScanNet</strong> for point-level reasoning segmentation in large-scale indoor scenes.</p>
+        <div style="overflow-x: auto;">
+          <table class="js-sort-table" style="margin: 1rem auto; font-size: 14px;">
+            <thead>
+              <tr>
+                <th class="no-sort"><strong>Method</strong></th>
+                <th><strong>3D mIoU (%)</strong></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td style="text-align:left;">OpenGaussian</td><td>2.9</td></tr>
+              <tr><td style="text-align:left;">InstanceGaussian</td><td>1.4</td></tr>
+              <tr><td style="text-align:left;">Dr.Splat</td><td>4.0</td></tr>
+              <tr><td style="text-align:left;">LUDVIG</td><td>5.1</td></tr>
+              <tr class="highlight-row"><td style="text-align:left;"><strong>CausalSplat (Ours)</strong></td><td><strong class="best-score-text">14.9</strong></td></tr>
+            </tbody>
+          </table>
         </div>
       </div>
     </div>
-  </section>
 
-  <!-- Additional results -->
-  <section class="section" id="results-additional">
-    <div class="container is-max-desktop">
-      <h2 class="title is-3 has-text-centered">Single-Target &amp; Open-Vocabulary Results</h2>
-      <div class="content has-text-justified benchmark-text">
-        <p>
-          Beyond GR3DGS, ZeroSplat excels on standard <strong>Referring 3DGS</strong> (Ref-LERF, mean mIoU <strong>32.7</strong>, +3.5 over ReferSplat despite being training-free) and <strong>open-vocabulary segmentation</strong> (52.4 mIoU on LERF, best on ScanNet 19-class and 15-class protocols).
-        </p>
-      </div>
-      <div class="results-tables-split mt-4">
-        <div class="columns is-desktop">
-          <div class="column is-5-desktop results-tables-left">
-            <div class="results-table-block results-table-block-compact">
-              <p class="results-table-caption">
-                <strong>Table 2:</strong> Quantitative results for R3DGS on Ref-LERF measured by mIoU.
-              </p>
-              <div class="results-table-scroll">
-                <table class="results-table results-table-compact">
-                  <thead>
-                    <tr>
-                      <th>Method</th>
-                      <th>Ramen</th>
-                      <th>Teatime</th>
-                      <th>Figurines</th>
-                      <th>Waldo</th>
-                      <th>Mean</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>Grounded SAM</td>
-                      <td>14.1</td>
-                      <td>16.9</td>
-                      <td>16.0</td>
-                      <td>16.2</td>
-                      <td>15.8</td>
-                    </tr>
-                    <tr>
-                      <td>LangSplat</td>
-                      <td>12.0</td>
-                      <td>7.6</td>
-                      <td>17.9</td>
-                      <td>17.9</td>
-                      <td>13.9</td>
-                    </tr>
-                    <tr>
-                      <td>SPIn-NeRF</td>
-                      <td>7.3</td>
-                      <td>11.7</td>
-                      <td>9.7</td>
-                      <td>10.3</td>
-                      <td>9.8</td>
-                    </tr>
-                    <tr>
-                      <td>GS-Grouping</td>
-                      <td>27.9</td>
-                      <td>14.8</td>
-                      <td>8.6</td>
-                      <td>6.3</td>
-                      <td>14.4</td>
-                    </tr>
-                    <tr>
-                      <td>GOI</td>
-                      <td>27.1</td>
-                      <td>22.9</td>
-                      <td>16.5</td>
-                      <td>15.7</td>
-                      <td>20.5</td>
-                    </tr>
-                    <tr>
-                      <td>ReferSplat</td>
-                      <td><strong>35.2</strong></td>
-                      <td><span class="val-second">31.3</span></td>
-                      <td><span class="val-second">25.7</span></td>
-                      <td><strong>24.4</strong></td>
-                      <td><span class="val-second">29.2</span></td>
-                    </tr>
-                    <tr class="ours-row">
-                      <td><strong>Ours</strong></td>
-                      <td><span class="val-second">30.4</span></td>
-                      <td><strong>41.4</strong></td>
-                      <td><strong>37.8</strong></td>
-                      <td><span class="val-second">21.3</span></td>
-                      <td><strong>32.7</strong></td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-
-            <div class="results-table-block results-table-block-compact mt-4">
-              <p class="results-table-caption">
-                <strong>Table 3:</strong> Quantitative results on ScanNet measured by mIoU.
-              </p>
-              <div class="results-table-scroll">
-                <table class="results-table results-table-compact">
-                  <thead>
-                    <tr>
-                      <th>Method</th>
-                      <th>19 cls.</th>
-                      <th>15 cls.</th>
-                      <th>10 cls.</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>OpenGaussian</td>
-                      <td>24.7</td>
-                      <td>30.1</td>
-                      <td>38.3</td>
-                    </tr>
-                    <tr>
-                      <td>InstanceGaussian</td>
-                      <td><span class="val-second">40.7</span></td>
-                      <td><span class="val-second">42.5</span></td>
-                      <td>47.9</td>
-                    </tr>
-                    <tr>
-                      <td>Dr.Splat (Top-40)</td>
-                      <td>29.6</td>
-                      <td>38.2</td>
-                      <td><strong>50.8</strong></td>
-                    </tr>
-                    <tr>
-                      <td>LUDVIG</td>
-                      <td>33.9</td>
-                      <td>37.4</td>
-                      <td>46.4</td>
-                    </tr>
-                    <tr class="ours-row">
-                      <td><strong>Ours</strong></td>
-                      <td><strong>44.5</strong></td>
-                      <td><strong>43.7</strong></td>
-                      <td><span class="val-second">49.7</span></td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
-
-          <div class="column is-7-desktop results-tables-right">
-            <div class="results-table-block results-table-block-compact">
-              <p class="results-table-caption">
-                <strong>Table 4:</strong> Quantitative results for open-vocabulary object selection on LERF measured by mIoU.
-              </p>
-              <div class="results-table-scroll">
-                <table class="results-table results-table-compact">
-                  <thead>
-                    <tr>
-                      <th>Method</th>
-                      <th>Ramen</th>
-                      <th>Teatime</th>
-                      <th>Figurines</th>
-                      <th>Waldo</th>
-                      <th>Mean</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr class="group-row">
-                      <td colspan="6"><strong>Pixel-based</strong></td>
-                    </tr>
-                    <tr>
-                      <td>LEGaussians</td>
-                      <td>46.0</td>
-                      <td>60.3</td>
-                      <td>40.8</td>
-                      <td>39.4</td>
-                      <td>46.6</td>
-                    </tr>
-                    <tr>
-                      <td>LangSplat</td>
-                      <td>51.2</td>
-                      <td>65.1</td>
-                      <td>44.7</td>
-                      <td>44.5</td>
-                      <td>51.4</td>
-                    </tr>
-                    <tr>
-                      <td>Feature-3DGS</td>
-                      <td>43.7</td>
-                      <td>58.8</td>
-                      <td>40.5</td>
-                      <td>39.6</td>
-                      <td>45.7</td>
-                    </tr>
-                    <tr>
-                      <td>GS-Grouping</td>
-                      <td>45.5</td>
-                      <td>60.9</td>
-                      <td>40.0</td>
-                      <td>38.7</td>
-                      <td>46.3</td>
-                    </tr>
-                    <tr>
-                      <td>GOI</td>
-                      <td>52.6</td>
-                      <td>63.7</td>
-                      <td>44.5</td>
-                      <td>41.4</td>
-                      <td>50.6</td>
-                    </tr>
-                    <tr>
-                      <td>ReferSplat</td>
-                      <td><span class="val-second">55.1</span></td>
-                      <td>50.1</td>
-                      <td><strong>67.5</strong></td>
-                      <td>48.9</td>
-                      <td>55.4</td>
-                    </tr>
-                    <tr>
-                      <td>Occam's LGS</td>
-                      <td>51.0</td>
-                      <td><span class="val-second">70.2</span></td>
-                      <td>58.6</td>
-                      <td><strong>65.3</strong></td>
-                      <td><span class="val-second">61.3</span></td>
-                    </tr>
-                    <tr>
-                      <td>3DVLGS</td>
-                      <td><strong>61.4</strong></td>
-                      <td><strong>73.5</strong></td>
-                      <td><span class="val-second">58.1</span></td>
-                      <td><span class="val-second">54.8</span></td>
-                      <td><strong>62.0</strong></td>
-                    </tr>
-                    <tr class="group-row">
-                      <td colspan="6"><strong>Point-based</strong></td>
-                    </tr>
-                    <tr>
-                      <td>OpenGaussian</td>
-                      <td>31.0</td>
-                      <td><span class="val-second">60.4</span></td>
-                      <td>39.3</td>
-                      <td>22.7</td>
-                      <td>38.4</td>
-                    </tr>
-                    <tr>
-                      <td>InstanceGaussian</td>
-                      <td>24.6</td>
-                      <td><strong>63.4</strong></td>
-                      <td>45.5</td>
-                      <td>29.2</td>
-                      <td>40.7</td>
-                    </tr>
-                    <tr>
-                      <td>Dr.Splat (Top-40)</td>
-                      <td>24.7</td>
-                      <td>57.2</td>
-                      <td>53.4</td>
-                      <td>39.1</td>
-                      <td>43.6</td>
-                    </tr>
-                    <tr>
-                      <td>LUDVIG</td>
-                      <td><span class="val-second">42.3</span></td>
-                      <td>58.6</td>
-                      <td><span class="val-second">58.0</span></td>
-                      <td><span class="val-second">42.8</span></td>
-                      <td><span class="val-second">50.4</span></td>
-                    </tr>
-                    <tr class="ours-row">
-                      <td><strong>Ours</strong></td>
-                      <td><strong>42.7</strong></td>
-                      <td>57.6</td>
-                      <td><strong>58.1</strong></td>
-                      <td><strong>51.2</strong></td>
-                      <td><strong>52.4</strong></td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
+    <div class="columns is-centered m-6">
+      <div class="column is-full has-text-centered content">
+        <h2 class="title is-3">Fine-Grained Reasoning Breakdown</h2>
+        <p>Average 2D mIoU (%) on Causal-LERF by reasoning dimension.</p>
+        <div style="overflow-x: auto;">
+          <table class="js-sort-table" style="margin: 1rem auto; font-size: 14px;">
+            <thead>
+              <tr>
+                <th class="no-sort"><strong>Reasoning Dimension</strong></th>
+                <th><strong>OpenGaussian</strong></th>
+                <th><strong>Dr.Splat</strong></th>
+                <th><strong>InstanceGaussian</strong></th>
+                <th><strong>LUDVIG</strong></th>
+                <th><strong>ReferSplat</strong></th>
+                <th><strong>CausalSplat</strong></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td style="text-align:left;">Spatial Reasoning</td><td>2.5</td><td>14.4</td><td>5.9</td><td>23.4</td><td>14.5</td><td><b class="best-score-text">58.9</b></td></tr>
+              <tr><td style="text-align:left;">Commonsense Reasoning</td><td>4.1</td><td>13.7</td><td>8.3</td><td>28.1</td><td>8.1</td><td><b class="best-score-text">42.9</b></td></tr>
+              <tr><td style="text-align:left;">Affordance Reasoning</td><td>3.2</td><td>9.9</td><td>2.9</td><td>34.3</td><td>7.3</td><td><b class="best-score-text">49.5</b></td></tr>
+              <tr><td style="text-align:left;">Predictive &amp; Counterfactual</td><td>1.8</td><td>5.6</td><td>2.1</td><td>10.8</td><td>16.0</td><td><b class="best-score-text">50.6</b></td></tr>
+            </tbody>
+          </table>
         </div>
       </div>
     </div>
-  </section>
 
-  <!-- Demo videos -->
-  <section class="section hero is-light" id="videos">
-    <div class="container is-max-desktop">
-      <h2 class="title is-3 has-text-centered">Demo Videos</h2>
-      <p class="subtitle has-text-centered is-5 method-subtitle">
-        ZeroSplat on GR-LERF, GR-ScanNet, Ref-LERF, LERF, and ScanNet
-      </p>
-
-      <div class="columns is-multiline is-centered demo-video-grid">
-
-        <div class="column is-12">
-          <article class="demo-video-card">
-            <div class="demo-video-wrapper">
-              <video class="demo-video" autoplay muted loop playsinline preload="auto"
-                     aria-label="GR-LERF demo video">
-                <source src="static/videos/grlerf/grlerf-1.mp4?v=20260621" type="video/mp4">
-              </video>
-            </div>
-            <h3 class="title is-5 demo-video-title">GR-LERF</h3>
-            <p class="demo-video-caption">Generalized referring segmentation on GR-LERF at the pixel level.</p>
-          </article>
-        </div>
-
-        <div class="column is-12">
-          <article class="demo-video-card">
-            <div class="demo-video-wrapper">
-              <video class="demo-video" autoplay muted loop playsinline preload="auto"
-                     aria-label="GR-ScanNet demo video">
-                <source src="static/videos/grscannet/grscannet-1.mp4?v=20260621" type="video/mp4">
-              </video>
-            </div>
-            <h3 class="title is-5 demo-video-title">GR-ScanNet</h3>
-            <p class="demo-video-caption">Generalized referring segmentation on GR-ScanNet at the 3D point level.</p>
-          </article>
-        </div>
-
-        <div class="column is-12">
-          <article class="demo-video-card">
-            <div class="demo-video-wrapper">
-              <video class="demo-video" autoplay muted loop playsinline preload="auto"
-                     aria-label="Ref-LERF demo video">
-                <source src="static/videos/reflerf/reflerf-1.mp4?v=20260621" type="video/mp4">
-              </video>
-            </div>
-            <h3 class="title is-5 demo-video-title">Ref-LERF</h3>
-            <p class="demo-video-caption">Single-target referring segmentation on Ref-LERF.</p>
-          </article>
-        </div>
-
-        <div class="column is-12">
-          <article class="demo-video-card">
-            <div class="demo-video-wrapper">
-              <video class="demo-video" autoplay muted loop playsinline preload="auto"
-                     aria-label="LERF demo video">
-                <source src="static/videos/lerf/lerf-1.mp4?v=20260621" type="video/mp4">
-              </video>
-            </div>
-            <h3 class="title is-5 demo-video-title">LERF</h3>
-            <p class="demo-video-caption">Open-vocabulary object selection on LERF.</p>
-          </article>
-        </div>
-
-        <div class="column is-12">
-          <article class="demo-video-card">
-            <div class="demo-video-wrapper">
-              <video class="demo-video" autoplay muted loop playsinline preload="auto"
-                     aria-label="ScanNet demo video">
-                <source src="static/videos/scannet/scannet-1.mp4?v=20260621" type="video/mp4">
-              </video>
-            </div>
-            <h3 class="title is-5 demo-video-title">ScanNet</h3>
-            <p class="demo-video-caption">Open-vocabulary 3D segmentation on ScanNet.</p>
-          </article>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- More qualitative -->
-  <section class="section" id="qualitative">
-    <div class="container is-max-desktop">
-      <h2 class="title is-3 has-text-centered">More Qualitative Comparisons</h2>
-
-      <d-figure id="fig-qual-reflerf" class="mt-4">
-        <figure>
-          <img data-zoomable draggable="false" src="static/images/qual_reflerf.png" alt="Qualitative comparisons on Ref-LERF" loading="lazy">
-          <figcaption>Qualitative comparisons on the <strong>Ref-LERF</strong> dataset for complex referring expressions with spatial relationships.</figcaption>
-        </figure>
-      </d-figure>
-
-      <d-figure id="fig-qual-lerf" class="mt-5">
-        <figure>
-          <img data-zoomable draggable="false" src="static/images/qual_lerf.png" alt="Qualitative comparisons on LERF" loading="lazy">
-          <figcaption>Qualitative comparisons on the <strong>LERF</strong> dataset for open-vocabulary object selection.</figcaption>
-        </figure>
-      </d-figure>
-
-      <d-figure id="fig-qual-scannet" class="mt-5">
-        <figure>
-          <img data-zoomable draggable="false" src="static/images/qual_scannet.png" alt="Qualitative comparisons on ScanNet" loading="lazy">
-          <figcaption>Qualitative comparisons on the <strong>ScanNet</strong> dataset for 3D open-vocabulary segmentation.</figcaption>
-        </figure>
-      </d-figure>
-    </div>
-  </section>
-
-  <!-- Applications -->
-  <section class="section hero is-light" id="applications">
-    <div class="container is-max-desktop">
-      <h2 class="title is-3 has-text-centered">Downstream Applications</h2>
-      <p class="subtitle has-text-centered is-5 method-subtitle">
-        ZeroSplat enables flexible open-vocabulary 3D scene editing by directly manipulating Gaussian primitives
-      </p>
-
-      <div class="columns is-centered">
-        <div class="column is-6">
-          <d-figure id="fig-app-translation">
-            <figure>
-              <img data-zoomable draggable="false" src="static/images/app_translation.png" alt="Spatial translation and swapping" loading="lazy">
-              <figcaption><strong>Spatial translation &amp; swapping.</strong> After segmentation, target Gaussians are translated or swapped via center coordinates without affecting others.</figcaption>
-            </figure>
-          </d-figure>
-        </div>
-        <div class="column is-6">
-          <d-figure id="fig-app-stylization">
-            <figure>
-              <img data-zoomable draggable="false" src="static/images/app_stylization.png" alt="Instance-level appearance stylization" loading="lazy">
-              <figcaption><strong>Instance-level stylization.</strong> Adjusting spherical harmonics (SH) coefficients of selected Gaussians enables high-fidelity object color editing.</figcaption>
-            </figure>
-          </d-figure>
-        </div>
-      </div>
-
-      <d-figure id="fig-realworld" class="mt-5">
-        <figure>
-          <img data-zoomable draggable="false" src="static/images/realworld.png" alt="Real-world smartphone capture results" loading="lazy">
-          <figcaption>
-            <strong>Real-world generalization.</strong> ZeroSplat robustly handles complex lighting, occlusions, and long-form descriptive instructions on smartphone-captured scenes. It correctly yields empty predictions for absent targets, demonstrating strong anti-hallucination capability.
-          </figcaption>
-        </figure>
-      </d-figure>
-    </div>
-  </section>
-
-  <!-- BibTeX -->
-  <section class="section" id="bibtex">
-    <div class="container is-max-desktop content">
-      <div class="bibtex-header">
-        <h2 class="title is-3">BibTeX</h2>
-        <button class="copy-bibtex-btn" onclick="copyBibTeX()" title="Copy BibTeX to clipboard">
-          <i class="fas fa-copy"></i>
-          <span class="copy-text">Copy</span>
-        </button>
-      </div>
-      <pre id="bibtex-code"><code>@inproceedings{ding2026zerosplat,
-  title={ZeroSplat: Generalized Referring Segmentation in 3D Gaussian Splatting},
-  author={Jiayu Ding and Meilu Song and Xiaoyi Zhang and Hongbo Jin and Yichen Jin and Xiangtian Si},
-  booktitle={European Conference on Computer Vision (ECCV)},
-  year={2026}
-}</code></pre>
-    </div>
-  </section>
-
-  </main>
-
-  <footer class="footer">
-    <div class="container">
-      <div class="columns is-centered">
-        <div class="column is-8 has-text-centered">
-          <div class="content">
-            <p>
-              This page was built using the
-              <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank" rel="noopener noreferrer">Academic Project Page Template</a>.
+    <div class="columns is-centered m-6">
+      <div class="column is-full has-text-centered content">
+        <h2 class="title is-3">Qualitative Comparison — Causal-LERF</h2>
+        <div class="box m-5">
+          <div class="content has-text-centered">
+            <img src="static/images/qualitative_lerf.png" alt="Qualitative comparison on Causal-LERF" style="width: 100%;"/>
+            <p style="margin-top: 1rem;">
+              Qualitative comparison on the Causal-LERF dataset. CausalSplat accurately segments targets described by implicit intents and multi-hop spatial constraints, while baselines often over-segment or localize distractors.
             </p>
           </div>
         </div>
       </div>
     </div>
-  </footer>
+
+    <div class="columns is-centered m-6">
+      <div class="column is-full has-text-centered content">
+        <h2 class="title is-3">Qualitative Comparison — Causal-ScanNet</h2>
+        <div class="box m-5">
+          <div class="content has-text-centered">
+            <img src="static/images/qualitative_scannet.png" alt="Qualitative comparison on Causal-ScanNet" style="width: 100%;"/>
+            <p style="margin-top: 1rem;">
+              Qualitative comparison on the Causal-ScanNet dataset. Our method handles complex spatial geometries and semantic ambiguities in large-scale point clouds.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="columns is-centered m-6">
+      <div class="column is-full has-text-centered content">
+        <h2 class="title is-3">Generalization — Ref-LERF (R3DGS)</h2>
+        <div style="overflow-x: auto;">
+          <table class="js-sort-table" style="margin: 1rem auto; font-size: 14px;">
+            <thead>
+              <tr>
+                <th class="no-sort"><strong>Method</strong></th>
+                <th><strong>Ramen</strong></th>
+                <th><strong>Teatime</strong></th>
+                <th><strong>Figurines</strong></th>
+                <th><strong>Waldo</strong></th>
+                <th><strong>Mean</strong></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td style="text-align:left;">Grounded SAM</td><td>14.1</td><td>16.9</td><td>16.0</td><td>16.2</td><td>15.8</td></tr>
+              <tr><td style="text-align:left;">LangSplat</td><td>12.0</td><td>7.6</td><td>17.9</td><td>17.9</td><td>13.9</td></tr>
+              <tr><td style="text-align:left;">SPIn-NeRF</td><td>7.3</td><td>11.7</td><td>9.7</td><td>10.3</td><td>9.8</td></tr>
+              <tr><td style="text-align:left;">GS-Grouping</td><td>27.9</td><td>14.8</td><td>8.6</td><td>6.3</td><td>14.4</td></tr>
+              <tr><td style="text-align:left;">GOI</td><td>27.1</td><td>22.9</td><td>16.5</td><td>15.7</td><td>20.5</td></tr>
+              <tr><td style="text-align:left;">ReferSplat</td><td>35.2</td><td>31.3</td><td>25.7</td><td>24.4</td><td>29.2</td></tr>
+              <tr class="highlight-row"><td style="text-align:left;"><strong>CausalSplat (Ours)</strong></td><td>28.2</td><td><strong>38.0</strong></td><td><strong>50.6</strong></td><td><strong>27.7</strong></td><td><strong class="best-score-text">36.1</strong></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="box m-5" style="margin-top: 1.5rem;">
+          <img src="static/images/qualitative_reflerf.png" alt="Qualitative results on Ref-LERF" style="width: 100%;"/>
+        </div>
+      </div>
+    </div>
+
+    <div class="columns is-centered m-6">
+      <div class="column is-full has-text-centered content">
+        <h2 class="title is-3">Generalization — LERF (Open-Vocabulary)</h2>
+        <div style="overflow-x: auto;">
+          <table class="js-sort-table" style="margin: 1rem auto; font-size: 14px;">
+            <thead>
+              <tr>
+                <th class="no-sort"><strong>Method</strong></th>
+                <th><strong>Ramen</strong></th>
+                <th><strong>Teatime</strong></th>
+                <th><strong>Figurines</strong></th>
+                <th><strong>Waldo</strong></th>
+                <th><strong>Mean</strong></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="group-header"><td colspan="6"><em>Pixel-based</em></td></tr>
+              <tr><td style="text-align:left;">LangSplat</td><td>51.2</td><td>65.1</td><td>44.7</td><td>44.5</td><td>51.4</td></tr>
+              <tr><td style="text-align:left;">3DVLGS</td><td>61.4</td><td>73.5</td><td>58.1</td><td>54.8</td><td>62.0</td></tr>
+              <tr class="group-header"><td colspan="6"><em>Point-based</em></td></tr>
+              <tr><td style="text-align:left;">OpenGaussian</td><td>31.0</td><td>60.4</td><td>39.3</td><td>22.7</td><td>38.4</td></tr>
+              <tr><td style="text-align:left;">LUDVIG</td><td>42.3</td><td>58.6</td><td>58.0</td><td>42.8</td><td>50.4</td></tr>
+              <tr class="highlight-row"><td style="text-align:left;"><strong>CausalSplat (Ours)</strong></td><td>26.7</td><td><strong>73.0</strong></td><td><strong>75.3</strong></td><td>30.1</td><td><strong class="best-score-text">51.3</strong></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="box m-5" style="margin-top: 1.5rem;">
+          <img src="static/images/qualitative_lerf_ovs.png" alt="Qualitative search results on LERF" style="width: 100%;"/>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="hero is-light is-small">
+  <div class="hero-body has-text-centered">
+    <h1 class="title is-1 mathvista_other" id="citation">Citation</h1>
+  </div>
+</section>
+
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+      <span></span>
+      <button class="button is-small is-rounded is-dark" onclick="copyBibTeX()" title="Copy BibTeX">
+        <span class="icon"><i class="fas fa-copy"></i></span>
+        <span id="copy-label">Copy</span>
+      </button>
+    </div>
+    <pre id="bibtex-code"><code>@inproceedings{ding2026causalsplat,
+  title={CausalSplat: Towards Comprehensive Hierarchical Reasoning in 3D Gaussian Splatting},
+  author={Jiayu Ding and Meilu Song and Yun Chen and Wei Gao and Ge Li},
+  booktitle={Proceedings of the ACM International Conference on Multimedia},
+  year={2026}
+}</code></pre>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="columns is-centered">
+    <div class="column is-8">
+      <div class="content">
+        <p style="text-align: center;">
+          This website is adapted from <a href="https://nerfies.github.io/">Nerfies</a>, licensed under a
+          <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
 
 </body>
 </html>

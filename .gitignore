@@ -1,1 +1,7 @@
 .DS_Store
+*.pdf
+CausalSplat/
+static/images/01.png
+static/images/02.png
+static/images/qualitative_comparison_improved_01.png
+static/images/page_*.png
