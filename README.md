@@ -7,7 +7,7 @@ Project page for **CausalSplat: Towards Comprehensive Hierarchical Reasoning in 
 - **Causal-LERF** — 2D pixel-level reasoning segmentation (158 instructions, 4 scenes)
 - **Causal-ScanNet** — 3D point-level reasoning segmentation (73 instructions, 10 scenes)
 
-Homepage: https://inkmind-ai.github.io/CausalSplat/
+Homepage: https://jiayuding031020.github.io/CausalSplat/
 
 ## Local Preview
 
