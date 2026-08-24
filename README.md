@@ -9,8 +9,7 @@ Project page for **CausalSplat: Towards Comprehensive Hierarchical Reasoning in 
 - **Causal-ScanNet** — 3D point-level reasoning segmentation (73 instructions, 10 scenes)
   - Hugging Face: https://huggingface.co/datasets/jiayuttkx/Causal-ScanNet
 
-Baidu Disk (Causal-ScanNet.zip and Causal-LERF.zip): https://pan.baidu.com/s/1CYvW3THVod7JYKHf6cewRg  
-Extraction code: `9tyw`
+Baidu Disk (Causal-ScanNet.zip and Causal-LERF.zip): https://pan.baidu.com/s/1CYvW3THVod7JYKHf6cewRg?pwd=9tyw
 
 arXiv: https://arxiv.org/pdf/2608.11150
 
