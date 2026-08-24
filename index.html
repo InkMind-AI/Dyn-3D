@@ -135,6 +135,12 @@
                   <span>Baidu Disk</span>
                 </a>
               </span>
+              <span class="link-block">
+                <a href="https://pan.quark.cn/s/6c8765c876c9" target="_blank" rel="noopener noreferrer" class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon"><i class="fas fa-cloud"></i></span>
+                  <span>Quark Disk</span>
+                </a>
+              </span>
             </div>
           </div>
         </div>
@@ -151,7 +157,7 @@
         <p style="margin-top: 1rem;">
           Overview of our reasoning segmentation paradigm and benchmark.
           <strong>Left:</strong> Evolution from open-vocabulary and referring segmentation to complex reasoning driven by implicit intents.
-          <strong>Middle:</strong> Four progressive reasoning levels — commonsense, spatial, affordance, and predictive/counterfactual.
+          <strong>Middle:</strong> Four progressive reasoning levels: commonsense, spatial, affordance, and predictive/counterfactual.
           <strong>Right:</strong> CausalSplat significantly outperforms SOTA on 2D/3D metrics within Causal-LERF and Causal-ScanNet.
         </p>
       </div>
@@ -296,23 +302,6 @@
             Spa. = Spatial, Com. = Commonsense, Aff. = Affordance, Cou. = Counterfactual reasoning.
             Causal-LERF and Causal-ScanNet are the first multi-level reasoning benchmarks for 3DGS covering all four dimensions.
           </p>
-          <div class="content has-text-left" style="max-width: 720px; margin: 1.5rem auto 0;">
-            <h3 class="title is-5 has-text-centered">Dataset Download</h3>
-            <ul>
-              <li>
-                <strong>Causal-LERF</strong> (Hugging Face):
-                <a href="https://huggingface.co/datasets/jiayuttkx/Causal-LERF" target="_blank" rel="noopener noreferrer">jiayuttkx/Causal-LERF</a>
-              </li>
-              <li>
-                <strong>Causal-ScanNet</strong> (Hugging Face):
-                <a href="https://huggingface.co/datasets/jiayuttkx/Causal-ScanNet" target="_blank" rel="noopener noreferrer">jiayuttkx/Causal-ScanNet</a>
-              </li>
-              <li>
-                Alternative download via <strong>Baidu Disk</strong> (<code>Causal-ScanNet.zip</code> and <code>Causal-LERF.zip</code>):
-                <a href="https://pan.baidu.com/s/1CYvW3THVod7JYKHf6cewRg?pwd=9tyw" target="_blank" rel="noopener noreferrer">https://pan.baidu.com/s/1CYvW3THVod7JYKHf6cewRg?pwd=9tyw</a>
-              </li>
-            </ul>
-          </div>
         </div>
       </div>
     </div>
@@ -329,7 +318,7 @@
   <div class="container">
     <div class="columns is-centered m-6">
       <div class="column is-full has-text-centered content">
-        <h2 class="title is-3">Quantitative Results — Causal-LERF</h2>
+        <h2 class="title is-3">Quantitative Results: Causal-LERF</h2>
         <p>
           2D mIoU (%) on <strong>Causal-LERF</strong> for Reasoning 3D Gaussian Segmentation.
           Models must localize and segment targets from natural language queries with implicit intents and multi-hop logical constraints.
@@ -364,7 +353,7 @@
 
     <div class="columns is-centered m-6">
       <div class="column is-full has-text-centered content">
-        <h2 class="title is-3">Quantitative Results — Causal-ScanNet</h2>
+        <h2 class="title is-3">Quantitative Results: Causal-ScanNet</h2>
         <p>3D mIoU (%) on <strong>Causal-ScanNet</strong> for point-level reasoning segmentation in large-scale indoor scenes.</p>
         <div style="overflow-x: auto;">
           <table class="js-sort-table" style="margin: 1rem auto; font-size: 14px;">
@@ -416,7 +405,7 @@
 
     <div class="columns is-centered m-6">
       <div class="column is-full has-text-centered content">
-        <h2 class="title is-3">Qualitative Comparison — Causal-LERF</h2>
+        <h2 class="title is-3">Qualitative Comparison: Causal-LERF</h2>
         <div class="box m-5">
           <div class="content has-text-centered">
             <img src="static/images/qualitative_lerf.png" alt="Qualitative comparison on Causal-LERF" style="width: 100%;"/>
@@ -430,7 +419,7 @@
 
     <div class="columns is-centered m-6">
       <div class="column is-full has-text-centered content">
-        <h2 class="title is-3">Qualitative Comparison — Causal-ScanNet</h2>
+        <h2 class="title is-3">Qualitative Comparison: Causal-ScanNet</h2>
         <div class="box m-5">
           <div class="content has-text-centered">
             <img src="static/images/qualitative_scannet.png" alt="Qualitative comparison on Causal-ScanNet" style="width: 100%;"/>
@@ -444,7 +433,7 @@
 
     <div class="columns is-centered m-6">
       <div class="column is-full has-text-centered content">
-        <h2 class="title is-3">Generalization — Ref-LERF (R3DGS)</h2>
+        <h2 class="title is-3">Generalization: Ref-LERF (R3DGS)</h2>
         <div style="overflow-x: auto;">
           <table class="js-sort-table" style="margin: 1rem auto; font-size: 14px;">
             <thead>
@@ -476,7 +465,7 @@
 
     <div class="columns is-centered m-6">
       <div class="column is-full has-text-centered content">
-        <h2 class="title is-3">Generalization — LERF (Open-Vocabulary)</h2>
+        <h2 class="title is-3">Generalization: LERF (Open-Vocabulary)</h2>
         <div style="overflow-x: auto;">
           <table class="js-sort-table" style="margin: 1rem auto; font-size: 14px;">
             <thead>
