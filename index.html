@@ -61,6 +61,18 @@
     .highlight-row {
       background: #eef6ff !important;
     }
+    .publication-links {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+    }
+    .link-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 6px 4px;
+    }
   </style>
 </head>
 <body>
@@ -99,48 +111,52 @@
 
           <div class="column has-text-centered">
             <div class="publication-links">
-              <span class="link-block">
-                <a href="#" class="external-link button is-normal is-rounded is-dark" aria-disabled="true" style="opacity: 0.6; pointer-events: none;">
-                  <span class="icon"><i class="fas fa-file-pdf"></i></span>
-                  <span>Paper (Soon)</span>
-                </a>
-              </span>
-              <span class="link-block">
-                <a href="https://arxiv.org/pdf/2608.11150" target="_blank" rel="noopener noreferrer" class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon"><i class="ai ai-arxiv"></i></span>
-                  <span>arXiv</span>
-                </a>
-              </span>
-              <span class="link-block">
-                <a href="#" class="external-link button is-normal is-rounded is-dark" aria-disabled="true" style="opacity: 0.6; pointer-events: none;">
-                  <span class="icon"><i class="fab fa-github"></i></span>
-                  <span>Code (Soon)</span>
-                </a>
-              </span>
-              <span class="link-block">
-                <a href="https://huggingface.co/datasets/jiayuttkx/Causal-LERF" target="_blank" rel="noopener noreferrer" class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon"><i class="fas fa-database"></i></span>
-                  <span>Causal-LERF</span>
-                </a>
-              </span>
-              <span class="link-block">
-                <a href="https://huggingface.co/datasets/jiayuttkx/Causal-ScanNet" target="_blank" rel="noopener noreferrer" class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon"><i class="fas fa-database"></i></span>
-                  <span>Causal-ScanNet</span>
-                </a>
-              </span>
-              <span class="link-block">
-                <a href="https://pan.baidu.com/s/1CYvW3THVod7JYKHf6cewRg?pwd=9tyw" target="_blank" rel="noopener noreferrer" class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon"><i class="fas fa-cloud-download-alt"></i></span>
-                  <span>Baidu Disk</span>
-                </a>
-              </span>
-              <span class="link-block">
-                <a href="https://pan.quark.cn/s/6c8765c876c9" target="_blank" rel="noopener noreferrer" class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon"><i class="fas fa-cloud"></i></span>
-                  <span>Quark Disk</span>
-                </a>
-              </span>
+              <div class="link-row">
+                <span class="link-block">
+                  <a href="#" class="external-link button is-normal is-rounded is-dark" aria-disabled="true" style="opacity: 0.6; pointer-events: none;">
+                    <span class="icon"><i class="fas fa-file-pdf"></i></span>
+                    <span>Paper (Soon)</span>
+                  </a>
+                </span>
+                <span class="link-block">
+                  <a href="https://arxiv.org/pdf/2608.11150" target="_blank" rel="noopener noreferrer" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon"><i class="ai ai-arxiv"></i></span>
+                    <span>arXiv</span>
+                  </a>
+                </span>
+                <span class="link-block">
+                  <a href="#" class="external-link button is-normal is-rounded is-dark" aria-disabled="true" style="opacity: 0.6; pointer-events: none;">
+                    <span class="icon"><i class="fab fa-github"></i></span>
+                    <span>Code (Soon)</span>
+                  </a>
+                </span>
+              </div>
+              <div class="link-row">
+                <span class="link-block">
+                  <a href="https://huggingface.co/datasets/jiayuttkx/Causal-LERF" target="_blank" rel="noopener noreferrer" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon"><i class="fas fa-database"></i></span>
+                    <span>Causal-LERF</span>
+                  </a>
+                </span>
+                <span class="link-block">
+                  <a href="https://huggingface.co/datasets/jiayuttkx/Causal-ScanNet" target="_blank" rel="noopener noreferrer" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon"><i class="fas fa-database"></i></span>
+                    <span>Causal-ScanNet</span>
+                  </a>
+                </span>
+                <span class="link-block">
+                  <a href="https://pan.baidu.com/s/1CYvW3THVod7JYKHf6cewRg?pwd=9tyw" target="_blank" rel="noopener noreferrer" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon"><i class="fas fa-cloud-download-alt"></i></span>
+                    <span>Baidu Disk</span>
+                  </a>
+                </span>
+                <span class="link-block">
+                  <a href="https://pan.quark.cn/s/6c8765c876c9" target="_blank" rel="noopener noreferrer" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon"><i class="fas fa-cloud"></i></span>
+                    <span>Quark Disk</span>
+                  </a>
+                </span>
+              </div>
             </div>
           </div>
         </div>
