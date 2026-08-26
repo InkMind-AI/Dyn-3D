@@ -10,6 +10,13 @@ This repository contains the official implementation of TempoVista, including th
 
 Dyn-3D is a controlled benchmark for video-based 3D understanding. It contains 16,063 four-option questions from 835 rendered videos and 167 held-out scenes, covering 19 question types (B1--B19). The benchmark evaluates kinematic perception, spatial understanding, and implicit trajectory reasoning while separating visual changes from physical motion through controlled 3D scene and object paths.
 
+## Model Weights
+
+The released TempoVista models are available on Hugging Face:
+
+- [Qwen3-VL-8B-Instruct + TempoVista](https://huggingface.co/light0626/TempoVista/tree/main/qwen_kinematic_gspo)
+- [InternVL-3.5-8B + TempoVista](https://huggingface.co/light0626/TempoVista/tree/main/internvl_kinematic_gspo)
+
 ## 0. Installation
 
 The code is tested with Python 3.9+ and CUDA-enabled PyTorch. The provided training configurations use two GPUs and bfloat16.
