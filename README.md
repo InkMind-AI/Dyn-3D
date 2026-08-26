@@ -1,4 +1,4 @@
-# TempoVista: Dyn-3D and Kinematic-GSPO
+# Dyn-3D: Unveiling and Resolving Ego-Motion Ambiguity in Vision-Language Models
 
 This repository contains the official implementation of TempoVista, including the Dyn-3D benchmark annotations, training and evaluation code, and the quantitative results reported in the paper.
 
