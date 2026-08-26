@@ -1,0 +1,133 @@
+data:
+  train_files: __PROJECT_ROOT__/data/rl/rl_train.jsonl
+  val_files: null
+  prompt_key: prompt
+  answer_key: answer
+  image_key: images
+  video_key: videos
+  image_dir: null
+  video_fps: 2.0
+  max_prompt_length: 4096
+  max_response_length: 192
+  rollout_batch_size: 12
+  mini_rollout_batch_size: null
+  val_batch_size: 16
+  format_prompt: null
+  override_chat_template: null
+  shuffle: true
+  seed: 1
+  min_pixels: null
+  max_pixels: 100352
+  filter_overlong_prompts: false
+  filter_overlong_prompts_workers: 8
+
+algorithm:
+  adv_estimator: grpo
+  disable_kl: false
+  use_kl_loss: true
+  kl_penalty: low_var_kl
+  kl_coef: 1.0e-2
+  online_filtering: false
+  filter_key: overall
+  filter_low: 0.01
+  filter_high: 0.99
+
+worker:
+  actor:
+    global_batch_size: 12
+    micro_batch_size_per_device_for_update: 1
+    micro_batch_size_per_device_for_experience: 1
+    max_grad_norm: 1.0
+    clip_ratio_low: 3.0e-4
+    clip_ratio_high: 4.0e-4
+    loss_avg_mode: seq
+    loss_type: gspo_token
+    ppo_epochs: 1
+    padding_free: true
+    dynamic_batching: true
+    ulysses_size: 1
+    use_torch_compile: false
+    model:
+      model_path: __MODEL_PATH__
+      tokenizer_path: __MODEL_PATH__
+      enable_gradient_checkpointing: true
+      trust_remote_code: true
+      freeze_vision_tower: true
+      lora:
+        rank: 32
+        alpha: 64
+        target_modules: q_proj,k_proj,v_proj,o_proj,gate_proj,up_proj,down_proj
+        exclude_modules: .*visual.*
+    optim:
+      lr: 1.0e-5
+      weight_decay: 1.0e-2
+      strategy: adamw
+      lr_warmup_ratio: 0.03
+      lr_warmup_steps: 150
+      lr_scheduler_type: cosine
+    fsdp:
+      enable_full_shard: true
+      enable_cpu_offload: false
+      enable_rank0_init: true
+      torch_dtype: bf16
+    offload:
+      offload_params: true
+      offload_optimizer: true
+
+  rollout:
+    n: 4
+    temperature: 1.0
+    top_p: 0.95
+    top_k: -1
+    limit_images: 8
+    dtype: bf16
+    gpu_memory_utilization: 0.60
+    enforce_eager: true
+    enable_chunked_prefill: false
+    tensor_parallel_size: 2
+    max_model_len: 4352
+    max_num_batched_tokens: 8192
+    max_num_seqs: 4
+    mm_processor_kwargs:
+      max_pixels: 100352
+    disable_tqdm: false
+    val_override_config:
+      temperature: 0.6
+      top_p: 0.95
+      n: 1
+
+  ref:
+    fsdp:
+      enable_full_shard: true
+      enable_cpu_offload: true
+      enable_rank0_init: true
+      torch_dtype: bf16
+    offload:
+      offload_params: false
+
+  reward:
+    reward_function: __PROJECT_ROOT__/code/EasyR1/examples/reward_function/kinematic_gspo.py:compute_score
+    reward_function_kwargs:
+      lambda_kinematic: 0.1
+      format_weight: 0.1
+      answer_weight: 1.0
+
+trainer:
+  total_epochs: 1
+  max_steps: 3000
+  project_name: easy_r1_vlm
+  experiment_name: qwen_kinematic_gspo
+  logger: ["file"]
+  nnodes: 1
+  n_gpus_per_node: 2
+  max_try_make_batch: 20
+  val_freq: 100
+  val_before_train: false
+  val_only: false
+  val_generations_to_log: 0
+  save_freq: 100
+  save_limit: 1000
+  save_model_only: false
+  save_checkpoint_path: __OUTPUT_DIR__
+  load_checkpoint_path: null
+  find_last_checkpoint: true

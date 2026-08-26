@@ -1,0 +1,69 @@
+name: tests
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - "main"
+    paths:
+      - "**/*.py"
+      - "**/requirements*.txt"
+      - ".github/workflows/*.yml"
+  pull_request:
+    branches:
+      - "main"
+    paths:
+      - "**/*.py"
+      - "**/requirements*.txt"
+      - ".github/workflows/*.yml"
+
+jobs:
+  tests:
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version:
+          - "3.11"
+        os:
+          - "ubuntu-latest"
+
+    runs-on: ${{ matrix.os }}
+
+    concurrency:
+      group: ${{ github.workflow }}-${{ github.ref }}-${{ matrix.os }}-${{ matrix.python-version }}
+      cancel-in-progress: ${{ github.ref != 'refs/heads/main' }}
+
+    env:
+      UV_NO_SYNC: 1
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v7
+        with:
+          python-version: ${{ matrix.python-version }}
+          version: "0.10.7"
+          enable-cache: true
+          cache-dependency-glob: ".github/requirements-test.txt"
+          
+      - name: Install dependencies
+        run: |
+          uv venv
+          uv pip install --upgrade pip
+          uv pip install torch torchvision --index-url https://download.pytorch.org/whl/cpu
+          uv pip install -r .github/requirements-test.txt
+          uv pip install --no-deps .
+
+      - name: Check quality
+        run: |
+          make style && make quality
+
+      - name: Check license
+        run: |
+          make license
+
+      - name: Test with pytest
+        run: |
+          make test
