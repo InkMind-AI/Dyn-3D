@@ -139,8 +139,8 @@ Please follow the licenses and access terms of the upstream projects and dataset
 ## 8. Citation
 
 ```bibtex
-@article{tempovista,
-  title   = {TempoVista: Learning Kinematic 3D Understanding from Rendered Videos},
+@article{dyn3d2026,
+  title   = {Dyn-3D: Unveiling and Resolving Ego-Motion Ambiguity in Vision-Language Models},
   author  = {Anonymous Authors},
   journal = {arXiv preprint},
   year    = {2026}
