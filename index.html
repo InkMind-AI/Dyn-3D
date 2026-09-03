@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CausalSplat</title>
+  <title>Dyn-3D</title>
 
-  <meta name="title" content="CausalSplat: Towards Comprehensive Hierarchical Reasoning in 3D Gaussian Splatting">
-  <meta name="description" content="CausalSplat integrates vision-language models with 3D scene graphs for reasoning 3D Gaussian segmentation, with benchmarks Causal-LERF and Causal-ScanNet.">
-  <meta name="keywords" content="CausalSplat, 3D Gaussian Splatting, reasoning segmentation, scene graph, Causal-LERF, Causal-ScanNet">
-  <meta name="author" content="Jiayu Ding, Meilu Song, Yun Chen, Wei Gao, Ge Li">
+  <meta name="title" content="Dyn-3D: Unveiling and Resolving Ego-Motion Ambiguity in Vision-Language Models">
+  <meta name="description" content="Dyn-3D evaluates ego-motion perception in vision-language models via counterfactual 3D rendering, and TempoVista grounds spatial reasoning with Kinematic-GSPO.">
+  <meta name="keywords" content="Dyn-3D, TempoVista, Kinematic-GSPO, ego-motion, Vision-Language Models, 3D spatial reasoning, Kinematic Collapse">
+  <meta name="author" content="Jiayu Ding, Zhuodong Liu, Lei Zhang, Manyu Xiong, Hongbo Jin, Haoran Tang, Hongbo Zhang, Changen Zhu, Wenbo Xing">
 
   <meta name="theme-color" content="#2d3748">
   <link rel="icon" href="./static/images/favicon.svg" type="image/svg+xml">
@@ -47,6 +47,16 @@
       color: #C6011F;
       font-weight: 700;
     }
+    .gain-text {
+      color: #1e7a46;
+      font-weight: 600;
+      font-size: 0.85em;
+    }
+    .drop-text {
+      color: #c0392b;
+      font-weight: 600;
+      font-size: 0.85em;
+    }
     .reasoning-card {
       border: 1px solid #e8e8e8;
       border-radius: 10px;
@@ -73,6 +83,19 @@
       justify-content: center;
       gap: 6px 4px;
     }
+    .author-block {
+      margin: 0 0.45rem 0.35rem;
+    }
+    .qa-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 0.75rem 1.25rem;
+      text-align: left;
+      margin-top: 1rem;
+    }
+    .qa-grid li {
+      margin-bottom: 0.25rem;
+    }
   </style>
 </head>
 <body>
@@ -83,77 +106,73 @@
       <div class="columns is-centered">
         <div class="column has-text-centered">
           <h1 class="title is-1 publication-title is-bold">
-            <span style="vertical-align: middle">CausalSplat</span>
+            <span style="vertical-align: middle">Dyn-3D</span>
           </h1>
           <h2 class="subtitle is-4 publication-subtitle" style="margin-bottom: 12px;">
-            Towards Comprehensive Hierarchical Reasoning in 3D Gaussian Splatting
+            Unveiling and Resolving Ego-Motion Ambiguity in Vision-Language Models
           </h2>
           <p class="is-size-5" style="margin-bottom: 20px; color: #c0392b; font-weight: 600;">
-            Accepted to ACM MM 2026
+            May 2026
           </p>
 
-          <div class="is-size-5 publication-authors" style="width: 90%; margin: 20px auto;">
-            <span class="author-block"><a href="https://inkmind-ai.github.io/">Jiayu Ding</a><sup>1,*</sup></span>
-            <span class="author-block"><a href="#">Meilu Song</a><sup>2,*</sup></span>
-            <span class="author-block"><a href="#">Yun Chen</a><sup>3,*</sup></span>
-            <span class="author-block"><a href="#">Wei Gao</a><sup>1</sup></span>
-            <span class="author-block"><a href="#">Ge Li</a><sup>1,†</sup></span>
+          <div class="is-size-5 publication-authors" style="width: 92%; margin: 20px auto;">
+            <span class="author-block"><a href="https://inkmind-ai.github.io/">Jiayu Ding</a><sup>*</sup></span>
+            <span class="author-block"><a href="#">Zhuodong Liu</a><sup>*</sup></span>
+            <span class="author-block"><a href="#">Lei Zhang</a><sup>*</sup></span>
+            <span class="author-block"><a href="#">Manyu Xiong</a></span>
+            <span class="author-block"><a href="#">Hongbo Jin</a></span>
+            <span class="author-block"><a href="#">Haoran Tang</a></span>
+            <span class="author-block"><a href="#">Hongbo Zhang</a></span>
+            <span class="author-block"><a href="#">Changen Zhu</a></span>
+            <span class="author-block"><a href="#">Wenbo Xing</a><sup>†</sup></span>
           </div>
 
-          <div class="is-size-6 publication-authors">
-            <span class="author-block"><sup>1</sup>Peking University</span>
-            <span class="author-block"><sup>2</sup>North China Electric Power University</span>
-            <span class="author-block"><sup>3</sup>Hunan University</span>
+          <div class="is-size-5 publication-authors" style="margin: 8px 0 12px;">
+            InkMind Team
           </div>
           <div class="is-size-6 publication-authors">
-            <span><sup>*</sup>Equal contribution. <sup>†</sup>Corresponding author.</span>
+            <span><sup>*</sup>Equal contribution. <sup>†</sup>Project leader.</span>
           </div>
 
           <div class="column has-text-centered">
             <div class="publication-links">
               <div class="link-row">
                 <span class="link-block">
-                  <a href="#" class="external-link button is-normal is-rounded is-dark" aria-disabled="true" style="opacity: 0.6; pointer-events: none;">
+                  <a href="https://arxiv.org/abs/2609.01059" target="_blank" rel="noopener noreferrer" class="external-link button is-normal is-rounded is-dark">
                     <span class="icon"><i class="fas fa-file-pdf"></i></span>
-                    <span>Paper (Soon)</span>
+                    <span>Paper</span>
                   </a>
                 </span>
                 <span class="link-block">
-                  <a href="https://arxiv.org/pdf/2608.11150" target="_blank" rel="noopener noreferrer" class="external-link button is-normal is-rounded is-dark">
+                  <a href="https://arxiv.org/abs/2609.01059" target="_blank" rel="noopener noreferrer" class="external-link button is-normal is-rounded is-dark">
                     <span class="icon"><i class="ai ai-arxiv"></i></span>
                     <span>arXiv</span>
                   </a>
                 </span>
                 <span class="link-block">
-                  <a href="#" class="external-link button is-normal is-rounded is-dark" aria-disabled="true" style="opacity: 0.6; pointer-events: none;">
+                  <a href="https://github.com/InkMind-AI/Dyn-3D" target="_blank" rel="noopener noreferrer" class="external-link button is-normal is-rounded is-dark">
                     <span class="icon"><i class="fab fa-github"></i></span>
-                    <span>Code (Soon)</span>
+                    <span>Code</span>
                   </a>
                 </span>
               </div>
               <div class="link-row">
                 <span class="link-block">
-                  <a href="https://huggingface.co/datasets/jiayuttkx/Causal-LERF" target="_blank" rel="noopener noreferrer" class="external-link button is-normal is-rounded is-dark">
+                  <a href="#" class="external-link button is-normal is-rounded is-dark" aria-disabled="true" style="opacity: 0.6; pointer-events: none;">
                     <span class="icon"><i class="fas fa-database"></i></span>
-                    <span>Causal-LERF</span>
+                    <span>Dyn-3D Benchmark (Soon)</span>
                   </a>
                 </span>
                 <span class="link-block">
-                  <a href="https://huggingface.co/datasets/jiayuttkx/Causal-ScanNet" target="_blank" rel="noopener noreferrer" class="external-link button is-normal is-rounded is-dark">
-                    <span class="icon"><i class="fas fa-database"></i></span>
-                    <span>Causal-ScanNet</span>
+                  <a href="https://huggingface.co/light0626/TempoVista" target="_blank" rel="noopener noreferrer" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon"><i class="fas fa-download"></i></span>
+                    <span>Pretrained Weights</span>
                   </a>
                 </span>
                 <span class="link-block">
-                  <a href="https://pan.baidu.com/s/1CYvW3THVod7JYKHf6cewRg?pwd=9tyw" target="_blank" rel="noopener noreferrer" class="external-link button is-normal is-rounded is-dark">
+                  <a href="#" class="external-link button is-normal is-rounded is-dark" aria-disabled="true" style="opacity: 0.6; pointer-events: none;">
                     <span class="icon"><i class="fas fa-cloud-download-alt"></i></span>
-                    <span>Baidu Disk</span>
-                  </a>
-                </span>
-                <span class="link-block">
-                  <a href="https://pan.quark.cn/s/6c8765c876c9" target="_blank" rel="noopener noreferrer" class="external-link button is-normal is-rounded is-dark">
-                    <span class="icon"><i class="fas fa-cloud"></i></span>
-                    <span>Quark Disk</span>
+                    <span>Baidu Disk (Soon)</span>
                   </a>
                 </span>
               </div>
@@ -169,12 +188,12 @@
   <div class="container">
     <div class="columns is-centered has-text-centered">
       <div class="column is-four-fifths">
-        <img src="static/images/teaser.png" alt="CausalSplat teaser" class="figure-img"/>
+        <img src="static/images/teaser.jpg" alt="Dyn-3D teaser: Kinematic Collapse and the Dyn-3D benchmark" class="figure-img"/>
         <p style="margin-top: 1rem;">
-          Overview of our reasoning segmentation paradigm and benchmark.
-          <strong>Left:</strong> Evolution from open-vocabulary and referring segmentation to complex reasoning driven by implicit intents.
-          <strong>Middle:</strong> Four progressive reasoning levels: commonsense, spatial, affordance, and predictive/counterfactual.
-          <strong>Right:</strong> CausalSplat significantly outperforms SOTA on 2D/3D metrics within Causal-LERF and Causal-ScanNet.
+          <strong>Kinematic Collapse and the Dyn-3D Benchmark.</strong>
+          <strong>(a) Kinematic Collapse:</strong> Current MLLMs rely on superficial visual changes rather than genuine physical displacement.
+          <strong>(b) Dyn-3D:</strong> Supervised by physical ground truth via Kinematic-GSPO, our model achieves explicit kinematic perception for accurate spatial and trajectory reasoning.
+          <strong>(c) Performance:</strong> Our approach significantly outperforms standard baselines across diverse spatiotemporal tasks on the Dyn-3D benchmark.
         </p>
       </div>
     </div>
@@ -188,13 +207,13 @@
         <h2 class="title is-3">Introduction</h2>
         <div class="content has-text-justified">
           <p>
-            While 3D Gaussian Splatting (3DGS) has advanced open-vocabulary scene understanding, existing methods remain confined to <strong>explicit queries</strong>. They struggle to interpret implicit intents, complex spatial constraints, and commonsense reasoning required for practical embodied interactions.
+            Multimodal Large Language Models (MLLMs) are moving from static 2D perception toward dynamic 3D spatial understanding. In video, pixel changes mix scene geometry with camera motion. Without knowing the camera trajectory and motion magnitude, a model cannot tell whether parallax and scaling come from object depth or from fast ego-motion. Because monocular signals are scale-ambiguous, <strong>ego-motion perception</strong> is the metric bridge between the 2D visual stream and 3D space.
           </p>
           <p>
-            To address this gap, we introduce the task of <strong>Reasoning 3D Gaussian Segmentation</strong> and construct two benchmarks, <strong>Causal-LERF</strong> and <strong>Causal-ScanNet</strong>. These benchmarks systematically evaluate commonsense, spatial, affordance, and counterfactual reasoning. Evaluations reveal that current state-of-the-art methods perform poorly on these reasoning challenges.
+            Current models often overfit to smooth trajectory priors rather than learning physical motion. Dense sampling and slow motion in mainstream video data create spurious correlations between visual change and displacement. When large displacements or non-smooth trajectories appear, spatial cognition fails. We call this failure <strong>Kinematic Collapse</strong>. In a pilot study of Qwen3.5-9B, increasing inter-frame displacement from 0.1&nbsp;m to 5.0&nbsp;m drops overall accuracy by 25.30 points (63.97% → 38.67%). Kinematic perception falls from 69.71% to 9.66%, and implicit trajectory reasoning stays below the 25% chance level.
           </p>
           <p>
-            We propose <strong>CausalSplat</strong>, a framework that integrates vision-language models with <strong>3D semantic scene graphs</strong> to disentangle explicit structural perception from implicit logical inference. Extensive experiments demonstrate state-of-the-art performance on our reasoning benchmarks while showing strong generalizability on standard referring and open-vocabulary 3D segmentation tasks.
+            We introduce the <strong>Dyn-3D Benchmark</strong>, the first evaluation of VLM ego-motion perception inside a 3D spatial framework. Using 3D Gaussian Splatting, we synthesize counterfactual video pairs with identical visual paths but different kinematics, totaling <strong>16,063</strong> test samples. We further release <strong>Dyn-3D-Instruct</strong> (33.6K samples) and propose <strong>TempoVista</strong> with <strong>Kinematic-GSPO</strong>, which injects metric physical ground truth into policy optimization. Experiments show that internalized kinematic perception improves motion estimation and robust spatial reasoning on Dyn-3D and VSI-Bench.
           </p>
         </div>
       </div>
@@ -206,27 +225,44 @@
   <div class="container">
     <div class="columns is-centered">
       <div class="column is-four-fifths">
-        <h2 class="title is-3 has-text-centered">Hierarchical Reasoning Taxonomy</h2>
+        <h2 class="title is-3 has-text-centered">Kinematic Collapse</h2>
         <div class="content has-text-justified">
-          <div class="reasoning-card">
-            <h4 class="title is-5">1. Spatial Reasoning</h4>
-            <p>Parses absolute and relative geometric relations and 3D topologies such as support, containment, and occlusion. Example: <em>“Find the object occluded under the table that supports a box.”</em></p>
-          </div>
-          <div class="reasoning-card">
-            <h4 class="title is-5">2. Commonsense Reasoning</h4>
-            <p>Aligns LLM prior knowledge with 3D scene instances to interpret implicit semantics. Example: <em>“I just finished a greasy meal and need to clean my mouth.”</em> → locate a napkin by function, not appearance.</p>
-          </div>
-          <div class="reasoning-card">
-            <h4 class="title is-5">3. Affordance Reasoning</h4>
-            <p>Infers whether an object supports embodied actions based on 3D geometry and spatial state. Example: <em>“Find a container with an upward opening for a robotic arm to grasp.”</em></p>
-          </div>
-          <div class="reasoning-card">
-            <h4 class="title is-5">4. Predictive &amp; Counterfactual Reasoning</h4>
-            <p>Models dynamic physical changes and causal relations under hypothetical conditions. Example: <em>“If the bottom red object is removed, which objects will fall?”</em></p>
-          </div>
           <p>
-            Causal-LERF and Causal-ScanNet contain <strong>231 reasoning instructions</strong> across <strong>14 real indoor scenes</strong>, with distribution: 18.2% spatial, 48.5% commonsense, 16.0% affordance, and 17.3% predictive/counterfactual reasoning.
+            Two pilots test whether models understand physical motion or only superficial visual change.
           </p>
+          <div class="reasoning-card">
+            <h4 class="title is-5">1. Collapse under high dynamics</h4>
+            <p>As inter-frame displacement grows, local visual correspondences break. Spatial accuracy falls, kinematic perception collapses, and trajectory reasoning remains near chance. Models depend on the continuous visual cues of smooth training data.</p>
+          </div>
+          <div class="reasoning-card">
+            <h4 class="title is-5">2. Visual–kinematic misalignment</h4>
+            <p>
+              On decoupled rotation and translation traps, Qwen3.5-9B scores 28.74% on pure rotation and 5.69% on pure translation (decoupled average 17.22%). Qwen3-VL-8B-Instruct and Qwen-VL-Max obtain 13.70% and 19.84%. Models routinely classify pure rotation as translation plus rotation, confusing viewpoint change with physical displacement.
+            </p>
+          </div>
+        </div>
+        <div class="content has-text-centered" style="overflow-x: auto;">
+          <h3 class="title is-5" style="margin-top: 1.5rem;">Pilot: Qwen3.5-9B vs. displacement magnitude</h3>
+          <p>Accuracy (%) on the 16,063-question Dyn-3D benchmark. Chance level is 25% for four-option questions.</p>
+          <table class="js-sort-table" style="margin: 1rem auto; font-size: 14px;">
+            <thead>
+              <tr>
+                <th class="no-sort"><strong>Subset</strong></th>
+                <th><strong>0.1 m</strong></th>
+                <th><strong>0.5 m</strong></th>
+                <th><strong>1.0 m</strong></th>
+                <th><strong>2.0 m</strong></th>
+                <th><strong>5.0 m</strong></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td style="text-align:left;">All (#)</td><td>2969</td><td>1463</td><td>3845</td><td>5037</td><td>2749</td></tr>
+              <tr><td style="text-align:left;">All Acc.</td><td>63.97</td><td>51.59</td><td>48.58</td><td>42.56</td><td><span class="drop-text">38.67</span></td></tr>
+              <tr><td style="text-align:left;">Spatial Acc.</td><td>67.53</td><td>62.90</td><td>57.08</td><td>51.84</td><td>52.76</td></tr>
+              <tr><td style="text-align:left;">Kinematic Acc.</td><td>69.71</td><td>30.71</td><td>31.29</td><td>23.04</td><td><span class="drop-text">9.66</span></td></tr>
+              <tr><td style="text-align:left;">Trajectory Acc.</td><td>0.00</td><td>3.33</td><td>17.24</td><td>13.47</td><td>4.91</td></tr>
+            </tbody>
+          </table>
         </div>
       </div>
     </div>
@@ -237,19 +273,30 @@
   <div class="container">
     <div class="columns is-centered has-text-centered">
       <div class="column is-four-fifths">
-        <h2 class="title is-3">Method</h2>
+        <h2 class="title is-3">Method: TempoVista</h2>
         <div class="content has-text-centered">
-          <img src="static/images/method.png" alt="CausalSplat pipeline" class="figure-img"/>
+          <img src="static/images/method.png" alt="Overview of the TempoVista framework" class="figure-img"/>
           <p style="margin-top: 1rem;">
-            Overview of the proposed CausalSplat pipeline.
-            <strong>(a) Semantic Field Construction:</strong> SAM masks, spatially weighted features, contrastive optimization, and 3D instance assignment.
-            <strong>(b) Semantic Scene Graph Construction &amp; Reasoning:</strong> Multimodal nodes and scale-adaptive edges, with a three-stage VLM reasoning pipeline.
+            Overview of the TempoVista framework.
+            <strong>Left:</strong> kinematic-adaptive keyframe selection in a motion-aware <em>SE</em>(3) metric space, with denser sampling where kinematic variation is large.
+            <strong>Right:</strong> Kinematic-GSPO generates candidate reasoning chains and scores them with a composite reward of spatial answer correctness, kinematic consistency, and format compliance.
           </p>
         </div>
         <div class="content has-text-justified" style="margin-top: 1.5rem;">
-          <p>
-            CausalSplat separates <strong>explicit structural perception</strong> from <strong>implicit logical inference</strong>. Scene graphs model topological and spatial relations among 3D entities, while a VLM parses implicit queries through instruction parsing, topological reasoning, and decision output.
-          </p>
+          <div class="reasoning-card">
+            <h4 class="title is-5">Kinematic-adaptive frame selection</h4>
+            <p>
+              Uniform sampling underrepresents sharp turns and fast translations. When camera extrinsics are available, TempoVista selects keyframes by greedy farthest-point sampling on <em>SE</em>(3), using a geodesic-inspired distance that balances translation and rotation. The selected frames form a geometric skeleton of the trajectory and preserve multi-object visibility.
+            </p>
+          </div>
+          <div class="reasoning-card">
+            <h4 class="title is-5">Kinematic-GSPO</h4>
+            <p>
+              After answer-supervised SFT, reinforcement learning asks the model for a structured motion trace—total path length, displacement magnitude, displacement vector, accumulated rotation, and average speed—plus the final answer. The reward is
+              <em>R</em> = <em>R</em><sub>ans</sub> + γ <em>R</em><sub>fmt</sub> + λ <em>R</em><sub>kin</sub>.
+              Group-relative advantages and a clipped GSPO objective favor responses whose explicit motion interpretation matches scene-derived physical annotations.
+            </p>
+          </div>
         </div>
       </div>
     </div>
@@ -273,40 +320,28 @@
           <table class="js-sort-table" style="margin: 1.5rem auto; font-size: 14px;">
             <thead>
               <tr>
-                <th class="no-sort"><strong>Dataset</strong></th>
-                <th class="no-sort"><strong>Task Type</strong></th>
-                <th><strong>Domain</strong></th>
-                <th><strong>Scenes</strong></th>
-                <th><strong>Query Scale</strong></th>
-                <th><strong>Spa.</strong></th>
-                <th><strong>Com.</strong></th>
-                <th><strong>Aff.</strong></th>
-                <th><strong>Cou.</strong></th>
+                <th class="no-sort"><strong>Benchmark</strong></th>
+                <th class="no-sort"><strong>Modality</strong></th>
+                <th><strong>Videos</strong></th>
+                <th><strong>QAs</strong></th>
+                <th><strong>3D Spatial</strong></th>
+                <th><strong>Ego-Motion</strong></th>
+                <th><strong>Counterfactual</strong></th>
+                <th><strong>Diagnostic Traps</strong></th>
               </tr>
             </thead>
             <tbody>
-              <tr><td style="text-align:left;">LERF</td><td>Open-Vocab Seg.</td><td>2D</td><td>4</td><td>208 Words</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
-              <tr><td style="text-align:left;">ScanNet (OVS)</td><td>Open-Vocab Seg.</td><td>3D</td><td>10</td><td>84 Words</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
-              <tr><td style="text-align:left;">Ref-LERF</td><td>Ref. Seg.</td><td>2D</td><td>4</td><td>63 Inst.</td><td>✓</td><td>—</td><td>—</td><td>—</td></tr>
-              <tr><td style="text-align:left;">3DAffordSplat</td><td>Reasoning Seg.</td><td>3D Synthetic</td><td>8.3K</td><td>6.6K Inst.</td><td>—</td><td>—</td><td>✓</td><td>—</td></tr>
-              <tr><td style="text-align:left;">REALM3D</td><td>Reasoning Seg.</td><td>2D</td><td>100+</td><td>1K+ Pairs</td><td>✓</td><td>✓</td><td>—</td><td>—</td></tr>
+              <tr><td style="text-align:left;">ScanQA</td><td>Static 3D</td><td>—</td><td>41K</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+              <tr><td style="text-align:left;">SpatialVLM</td><td>Static 2D</td><td>—</td><td>2B</td><td>✓</td><td>—</td><td>—</td><td>—</td></tr>
+              <tr><td style="text-align:left;">MVBench</td><td>Video</td><td>4K</td><td>4K</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+              <tr><td style="text-align:left;">EgoSchema</td><td>Video</td><td>5K</td><td>5K</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+              <tr><td style="text-align:left;">OpenEQA</td><td>Video</td><td>~200</td><td>1.6K</td><td>✓</td><td>—</td><td>—</td><td>—</td></tr>
+              <tr><td style="text-align:left;">VSI-Bench</td><td>Video</td><td>288</td><td>5K</td><td>✓</td><td>Partial</td><td>—</td><td>—</td></tr>
               <tr class="highlight-row">
-                <td style="text-align:left;"><strong><a href="https://huggingface.co/datasets/jiayuttkx/Causal-LERF" target="_blank" rel="noopener noreferrer">Causal-LERF (Ours)</a></strong></td>
-                <td><strong>Reasoning Seg.</strong></td>
-                <td><strong>2D</strong></td>
-                <td><strong>4</strong></td>
-                <td><strong>158 Inst.</strong></td>
-                <td><strong>✓</strong></td>
-                <td><strong>✓</strong></td>
-                <td><strong>✓</strong></td>
-                <td><strong>✓</strong></td>
-              </tr>
-              <tr class="highlight-row">
-                <td style="text-align:left;"><strong><a href="https://huggingface.co/datasets/jiayuttkx/Causal-ScanNet" target="_blank" rel="noopener noreferrer">Causal-ScanNet (Ours)</a></strong></td>
-                <td><strong>Reasoning Seg.</strong></td>
-                <td><strong>3D</strong></td>
-                <td><strong>10</strong></td>
-                <td><strong>73 Inst.</strong></td>
+                <td style="text-align:left;"><strong>Dyn-3D (Ours)</strong></td>
+                <td><strong>Video</strong></td>
+                <td><strong>835</strong></td>
+                <td><strong>16K</strong></td>
                 <td><strong>✓</strong></td>
                 <td><strong>✓</strong></td>
                 <td><strong>✓</strong></td>
@@ -314,10 +349,49 @@
               </tr>
             </tbody>
           </table>
-          <p style="max-width: 720px; margin: 0 auto;">
-            Spa. = Spatial, Com. = Commonsense, Aff. = Affordance, Cou. = Counterfactual reasoning.
-            Causal-LERF and Causal-ScanNet are the first multi-level reasoning benchmarks for 3DGS covering all four dimensions.
+          <p style="max-width: 760px; margin: 0 auto;">
+            Dyn-3D renders identical spatial paths with distinct dynamics (fast / smooth / slow) plus pure-rotation and pure-translation traps, so models cannot solve spatial questions from optical-flow shortcuts.
           </p>
+        </div>
+
+        <div class="content has-text-justified" style="max-width: 960px; margin: 2rem auto 0;">
+          <h2 class="title is-3 has-text-centered">Construction and Task Taxonomy</h2>
+          <p>
+            We reconstruct 447 indoor ScanNet++ scenes with 3D Gaussian Splatting (splatfacto in nerfstudio), then keep 443 eligible scenes: 263 for training, 167 held-out for evaluation, and 13 reserved. Each scene is rendered at 30&nbsp;FPS under five motion types. All 16,063 evaluation questions are generated deterministically from restored metric 3D metadata and independently recomputed before scoring.
+          </p>
+          <ul>
+            <li><strong>Kinematic perception</strong> (B1–B6, B19; 3,023 samples, 18.8%): displacement, direction, rotation, speed, path length, and rotation/translation traps.</li>
+            <li><strong>Spatial understanding</strong> (B7–B16; 11,626 samples, 72.4%): object direction, distance trends, nearest-object reasoning, coordinate re-anchoring, counting, size, causal direction, and depth-subtraction visibility.</li>
+            <li><strong>Implicit trajectory reasoning</strong> (B17–B18; 1,414 samples, 8.8%): motion type and trajectory shape.</li>
+          </ul>
+          <p>
+            The five trajectory types are balanced (2,911–3,477 questions each). Diagnostic traps include 147 rotation and 21 translation items. Dyn-3D-Instruct provides 9,600 SFT samples and 24,000 RL samples, with no scene overlap against the benchmark.
+          </p>
+          <div class="qa-grid">
+            <ol>
+              <li><strong>B1</strong> Displacement magnitude</li>
+              <li><strong>B2</strong> Camera motion direction</li>
+              <li><strong>B3</strong> Rotation angle</li>
+              <li><strong>B4</strong> Rotation trap</li>
+              <li><strong>B5</strong> Translation trap</li>
+              <li><strong>B6</strong> Camera speed</li>
+              <li><strong>B7</strong> Object direction (first frame)</li>
+              <li><strong>B8</strong> Object direction (last frame)</li>
+              <li><strong>B9</strong> Object distance trend</li>
+              <li><strong>B10</strong> Nearest object</li>
+            </ol>
+            <ol start="11">
+              <li><strong>B11</strong> Coordinate re-anchoring</li>
+              <li><strong>B12</strong> Relative object distance</li>
+              <li><strong>B13</strong> Object counting</li>
+              <li><strong>B14</strong> Object size</li>
+              <li><strong>B15</strong> Cross-frame causal direction</li>
+              <li><strong>B16</strong> Depth-subtraction visibility</li>
+              <li><strong>B17</strong> Motion type</li>
+              <li><strong>B18</strong> Trajectory shape</li>
+              <li><strong>B19</strong> Total path length</li>
+            </ol>
+          </div>
         </div>
       </div>
     </div>
@@ -334,33 +408,46 @@
   <div class="container">
     <div class="columns is-centered m-6">
       <div class="column is-full has-text-centered content">
-        <h2 class="title is-3">Quantitative Results: Causal-LERF</h2>
+        <h2 class="title is-3">Quantitative Results: Dyn-3D</h2>
         <p>
-          2D mIoU (%) on <strong>Causal-LERF</strong> for Reasoning 3D Gaussian Segmentation.
-          Models must localize and segment targets from natural language queries with implicit intents and multi-hop logical constraints.
+          Accuracy (%) with eight frames per video. TempoVista improves both InternVL-3.5-8B and Qwen3-VL-8B-Instruct; the latter reaches the best open-source overall score and surpasses Qwen-VL-Max by 11.4 points.
         </p>
         <div style="overflow-x: auto;">
           <table class="js-sort-table" style="margin: 1rem auto; font-size: 14px;">
             <thead>
               <tr>
-                <th class="no-sort"><strong>Method</strong></th>
-                <th><strong>Ramen (%)</strong></th>
-                <th><strong>Teatime (%)</strong></th>
-                <th><strong>Figurines (%)</strong></th>
-                <th><strong>Waldo (%)</strong></th>
-                <th><strong>Mean (%)</strong></th>
+                <th class="no-sort"><strong>Model</strong></th>
+                <th><strong>Kinematic</strong></th>
+                <th><strong>Spatial</strong></th>
+                <th><strong>Trajectory</strong></th>
+                <th><strong>Overall</strong></th>
               </tr>
             </thead>
             <tbody>
-              <tr class="group-header"><td colspan="6"><em>Open-Vocabulary &amp; Referring Methods</em></td></tr>
-              <tr><td style="text-align:left;">OpenGaussian</td><td>9.6</td><td>4.2</td><td>3.3</td><td>8.2</td><td>6.3</td></tr>
-              <tr><td style="text-align:left;">Dr.Splat</td><td>8.7</td><td>8.8</td><td>16.1</td><td>13.3</td><td>11.7</td></tr>
-              <tr><td style="text-align:left;">InstanceGaussian</td><td>2.7</td><td>4.7</td><td>9.2</td><td>10.5</td><td>6.8</td></tr>
-              <tr><td style="text-align:left;">LUDVIG</td><td>32.6</td><td>19.7</td><td>34.1</td><td>8.0</td><td>23.6</td></tr>
-              <tr><td style="text-align:left;">ReferSplat</td><td>5.2</td><td>16.2</td><td>7.5</td><td>11.1</td><td>10.0</td></tr>
-              <tr><td style="text-align:left;">REALM</td><td>9.4</td><td>14.3</td><td>7.8</td><td>13.9</td><td>11.4</td></tr>
-              <tr class="group-header"><td colspan="6"><em>Reasoning Segmentation (Ours)</em></td></tr>
-              <tr class="highlight-row"><td style="text-align:left;"><strong>CausalSplat (Ours)</strong></td><td>26.2</td><td>68.4</td><td>46.9</td><td>46.5</td><td><strong class="best-score-text">47.0</strong></td></tr>
+              <tr class="group-header"><td colspan="5"><em>Proprietary Models</em></td></tr>
+              <tr><td style="text-align:left;">GPT-4o</td><td>45.3</td><td>36.1</td><td>40.2</td><td>38.2</td></tr>
+              <tr><td style="text-align:left;">Qwen-VL-Max</td><td>53.2</td><td>46.2</td><td>71.9</td><td>49.8</td></tr>
+              <tr class="group-header"><td colspan="5"><em>Open-Source Models</em></td></tr>
+              <tr><td style="text-align:left;">LLaVA-Video</td><td>40.7</td><td>28.4</td><td>61.8</td><td>33.7</td></tr>
+              <tr><td style="text-align:left;">LLaVA-NeXT-Video</td><td>19.1</td><td>30.5</td><td>34.3</td><td>28.7</td></tr>
+              <tr><td style="text-align:left;">LLaVA-OneVision</td><td>40.3</td><td>28.1</td><td>56.6</td><td>32.9</td></tr>
+              <tr><td style="text-align:left;">Qwen2.5-VL-7B-Instruct</td><td>30.7</td><td>37.4</td><td>44.3</td><td>36.7</td></tr>
+              <tr><td style="text-align:left;">InternVL-3.5-8B</td><td>52.0</td><td>47.8</td><td>70.4</td><td>50.6</td></tr>
+              <tr class="highlight-row">
+                <td style="text-align:left;"><strong>InternVL-3.5-8B + TempoVista</strong></td>
+                <td><strong class="best-score-text">64.5</strong> <span class="gain-text">(+12.5)</span></td>
+                <td>52.7 <span class="gain-text">(+4.9)</span></td>
+                <td>77.7 <span class="gain-text">(+7.3)</span></td>
+                <td>57.1 <span class="gain-text">(+6.5)</span></td>
+              </tr>
+              <tr><td style="text-align:left;">Qwen3-VL-8B-Instruct</td><td>51.0</td><td>47.6</td><td>71.4</td><td>50.3</td></tr>
+              <tr class="highlight-row">
+                <td style="text-align:left;"><strong>Qwen3-VL-8B-Instruct + TempoVista</strong></td>
+                <td>62.6 <span class="gain-text">(+11.6)</span></td>
+                <td><strong class="best-score-text">58.3</strong> <span class="gain-text">(+10.7)</span></td>
+                <td><strong class="best-score-text">81.8</strong> <span class="gain-text">(+10.4)</span></td>
+                <td><strong class="best-score-text">61.2</strong> <span class="gain-text">(+10.9)</span></td>
+              </tr>
             </tbody>
           </table>
         </div>
@@ -369,22 +456,47 @@
 
     <div class="columns is-centered m-6">
       <div class="column is-full has-text-centered content">
-        <h2 class="title is-3">Quantitative Results: Causal-ScanNet</h2>
-        <p>3D mIoU (%) on <strong>Causal-ScanNet</strong> for point-level reasoning segmentation in large-scale indoor scenes.</p>
+        <h2 class="title is-3">Transfer: VSI-Bench Spatial MCQ</h2>
+        <p>Selected VSI-Bench multiple-choice spatial tasks with 32 frames per video. Accuracy (%).</p>
         <div style="overflow-x: auto;">
           <table class="js-sort-table" style="margin: 1rem auto; font-size: 14px;">
             <thead>
               <tr>
-                <th class="no-sort"><strong>Method</strong></th>
-                <th><strong>3D mIoU (%)</strong></th>
+                <th class="no-sort"><strong>Model</strong></th>
+                <th><strong>Overall</strong></th>
+                <th><strong>Rel. Distance</strong></th>
+                <th><strong>Rel. Direction</strong></th>
+                <th><strong>App. Order</strong></th>
+                <th><strong>Route Plan</strong></th>
               </tr>
             </thead>
             <tbody>
-              <tr><td style="text-align:left;">OpenGaussian</td><td>2.9</td></tr>
-              <tr><td style="text-align:left;">InstanceGaussian</td><td>1.4</td></tr>
-              <tr><td style="text-align:left;">Dr.Splat</td><td>4.0</td></tr>
-              <tr><td style="text-align:left;">LUDVIG</td><td>5.1</td></tr>
-              <tr class="highlight-row"><td style="text-align:left;"><strong>CausalSplat (Ours)</strong></td><td><strong class="best-score-text">14.9</strong></td></tr>
+              <tr class="group-header"><td colspan="6"><em>Proprietary Models</em></td></tr>
+              <tr><td style="text-align:left;">GPT-4o</td><td>36.1</td><td>37.0</td><td>41.3</td><td>28.5</td><td>31.5</td></tr>
+              <tr><td style="text-align:left;">Gemini-1.5-Flash</td><td>38.5</td><td>37.7</td><td>41.0</td><td>37.8</td><td>31.5</td></tr>
+              <tr><td style="text-align:left;">Gemini-1.5-Pro</td><td>44.0</td><td>51.3</td><td>46.3</td><td>34.6</td><td><strong>36.0</strong></td></tr>
+              <tr class="group-header"><td colspan="6"><em>Open-Source Models</em></td></tr>
+              <tr><td style="text-align:left;">Qwen2.5-VL-7B-Instruct</td><td>34.5</td><td>38.0</td><td>37.4</td><td>28.0</td><td>28.4</td></tr>
+              <tr><td style="text-align:left;">LLaVA-OneVision-7B</td><td>34.1</td><td>42.5</td><td>35.2</td><td>24.4</td><td>29.4</td></tr>
+              <tr><td style="text-align:left;">LLaVA-NeXT-Video-7B</td><td>39.1</td><td>43.5</td><td>42.4</td><td>30.6</td><td>34.0</td></tr>
+              <tr><td style="text-align:left;">InternVL-3.5-8B</td><td>50.1</td><td>52.4</td><td>48.6</td><td>55.1</td><td>32.9</td></tr>
+              <tr class="highlight-row">
+                <td style="text-align:left;"><strong>InternVL-3.5-8B + TempoVista</strong></td>
+                <td>50.7 <span class="gain-text">(+0.6)</span></td>
+                <td>54.4 <span class="gain-text">(+2.0)</span></td>
+                <td>48.1 <span class="drop-text">(-0.5)</span></td>
+                <td>55.7 <span class="gain-text">(+0.6)</span></td>
+                <td>34.5 <span class="gain-text">(+1.6)</span></td>
+              </tr>
+              <tr><td style="text-align:left;">Qwen3-VL-8B-Instruct</td><td>51.3</td><td>53.5</td><td>47.9</td><td>60.2</td><td>32.0</td></tr>
+              <tr class="highlight-row">
+                <td style="text-align:left;"><strong>Qwen3-VL-8B-Instruct + TempoVista</strong></td>
+                <td><strong class="best-score-text">55.6</strong> <span class="gain-text">(+4.3)</span></td>
+                <td><strong class="best-score-text">56.2</strong> <span class="gain-text">(+2.7)</span></td>
+                <td><strong class="best-score-text">51.7</strong> <span class="gain-text">(+3.8)</span></td>
+                <td><strong class="best-score-text">67.8</strong> <span class="gain-text">(+7.6)</span></td>
+                <td>34.0 <span class="gain-text">(+2.0)</span></td>
+              </tr>
             </tbody>
           </table>
         </div>
@@ -393,26 +505,26 @@
 
     <div class="columns is-centered m-6">
       <div class="column is-full has-text-centered content">
-        <h2 class="title is-3">Fine-Grained Reasoning Breakdown</h2>
-        <p>Average 2D mIoU (%) on Causal-LERF by reasoning dimension.</p>
+        <h2 class="title is-3">Ablation: Training Strategy</h2>
+        <p>Overall Dyn-3D accuracy (%). Policy optimization provides most of the gain; the kinematic reward adds a further 1.1–1.6 points.</p>
         <div style="overflow-x: auto;">
           <table class="js-sort-table" style="margin: 1rem auto; font-size: 14px;">
             <thead>
               <tr>
-                <th class="no-sort"><strong>Reasoning Dimension</strong></th>
-                <th><strong>OpenGaussian</strong></th>
-                <th><strong>Dr.Splat</strong></th>
-                <th><strong>InstanceGaussian</strong></th>
-                <th><strong>LUDVIG</strong></th>
-                <th><strong>ReferSplat</strong></th>
-                <th><strong>CausalSplat</strong></th>
+                <th class="no-sort"><strong>Training Strategy</strong></th>
+                <th><strong>InternVL-3.5-8B</strong></th>
+                <th><strong>Qwen3-VL-8B-Instruct</strong></th>
               </tr>
             </thead>
             <tbody>
-              <tr><td style="text-align:left;">Spatial Reasoning</td><td>2.5</td><td>14.4</td><td>5.9</td><td>23.4</td><td>14.5</td><td><b class="best-score-text">58.9</b></td></tr>
-              <tr><td style="text-align:left;">Commonsense Reasoning</td><td>4.1</td><td>13.7</td><td>8.3</td><td>28.1</td><td>8.1</td><td><b class="best-score-text">42.9</b></td></tr>
-              <tr><td style="text-align:left;">Affordance Reasoning</td><td>3.2</td><td>9.9</td><td>2.9</td><td>34.3</td><td>7.3</td><td><b class="best-score-text">49.5</b></td></tr>
-              <tr><td style="text-align:left;">Predictive &amp; Counterfactual</td><td>1.8</td><td>5.6</td><td>2.1</td><td>10.8</td><td>16.0</td><td><b class="best-score-text">50.6</b></td></tr>
+              <tr><td style="text-align:left;">Base model</td><td>50.6</td><td>50.3</td></tr>
+              <tr><td style="text-align:left;">SFT Only</td><td>51.6</td><td>52.6</td></tr>
+              <tr><td style="text-align:left;">Base GSPO</td><td>55.5</td><td>60.1</td></tr>
+              <tr class="highlight-row">
+                <td style="text-align:left;"><strong>Kinematic-GSPO (Ours)</strong></td>
+                <td><strong class="best-score-text">57.1</strong></td>
+                <td><strong class="best-score-text">61.2</strong></td>
+              </tr>
             </tbody>
           </table>
         </div>
@@ -421,92 +533,27 @@
 
     <div class="columns is-centered m-6">
       <div class="column is-full has-text-centered content">
-        <h2 class="title is-3">Qualitative Comparison: Causal-LERF</h2>
-        <div class="box m-5">
-          <div class="content has-text-centered">
-            <img src="static/images/qualitative_lerf.png" alt="Qualitative comparison on Causal-LERF" style="width: 100%;"/>
-            <p style="margin-top: 1rem;">
-              Qualitative comparison on the Causal-LERF dataset. CausalSplat accurately segments targets described by implicit intents and multi-hop spatial constraints, while baselines often over-segment or localize distractors.
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="columns is-centered m-6">
-      <div class="column is-full has-text-centered content">
-        <h2 class="title is-3">Qualitative Comparison: Causal-ScanNet</h2>
-        <div class="box m-5">
-          <div class="content has-text-centered">
-            <img src="static/images/qualitative_scannet.png" alt="Qualitative comparison on Causal-ScanNet" style="width: 100%;"/>
-            <p style="margin-top: 1rem;">
-              Qualitative comparison on the Causal-ScanNet dataset. Our method handles complex spatial geometries and semantic ambiguities in large-scale point clouds.
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="columns is-centered m-6">
-      <div class="column is-full has-text-centered content">
-        <h2 class="title is-3">Generalization: Ref-LERF (R3DGS)</h2>
+        <h2 class="title is-3">Ablation: Frame Sampling</h2>
+        <p>Overall accuracy (%) under non-linear trajectories. Oracle <em>SE</em>(3) sampling outperforms uniform sampling by 1.5 points on both models; a visual flow proxy is worse than uniform sampling.</p>
         <div style="overflow-x: auto;">
           <table class="js-sort-table" style="margin: 1rem auto; font-size: 14px;">
             <thead>
               <tr>
-                <th class="no-sort"><strong>Method</strong></th>
-                <th><strong>Ramen</strong></th>
-                <th><strong>Teatime</strong></th>
-                <th><strong>Figurines</strong></th>
-                <th><strong>Waldo</strong></th>
-                <th><strong>Mean</strong></th>
+                <th class="no-sort"><strong>Sampling Strategy</strong></th>
+                <th><strong>InternVL-3.5-8B + TempoVista</strong></th>
+                <th><strong>Qwen3-VL-8B-Instruct + TempoVista</strong></th>
               </tr>
             </thead>
             <tbody>
-              <tr><td style="text-align:left;">Grounded SAM</td><td>14.1</td><td>16.9</td><td>16.0</td><td>16.2</td><td>15.8</td></tr>
-              <tr><td style="text-align:left;">LangSplat</td><td>12.0</td><td>7.6</td><td>17.9</td><td>17.9</td><td>13.9</td></tr>
-              <tr><td style="text-align:left;">SPIn-NeRF</td><td>7.3</td><td>11.7</td><td>9.7</td><td>10.3</td><td>9.8</td></tr>
-              <tr><td style="text-align:left;">GS-Grouping</td><td>27.9</td><td>14.8</td><td>8.6</td><td>6.3</td><td>14.4</td></tr>
-              <tr><td style="text-align:left;">GOI</td><td>27.1</td><td>22.9</td><td>16.5</td><td>15.7</td><td>20.5</td></tr>
-              <tr><td style="text-align:left;">ReferSplat</td><td>35.2</td><td>31.3</td><td>25.7</td><td>24.4</td><td>29.2</td></tr>
-              <tr class="highlight-row"><td style="text-align:left;"><strong>CausalSplat (Ours)</strong></td><td>28.2</td><td><strong>38.0</strong></td><td><strong>50.6</strong></td><td><strong>27.7</strong></td><td><strong class="best-score-text">36.1</strong></td></tr>
-            </tbody>
-          </table>
-        </div>
-        <div class="box m-5" style="margin-top: 1.5rem;">
-          <img src="static/images/qualitative_reflerf.png" alt="Qualitative results on Ref-LERF" style="width: 100%;"/>
-        </div>
-      </div>
-    </div>
-
-    <div class="columns is-centered m-6">
-      <div class="column is-full has-text-centered content">
-        <h2 class="title is-3">Generalization: LERF (Open-Vocabulary)</h2>
-        <div style="overflow-x: auto;">
-          <table class="js-sort-table" style="margin: 1rem auto; font-size: 14px;">
-            <thead>
-              <tr>
-                <th class="no-sort"><strong>Method</strong></th>
-                <th><strong>Ramen</strong></th>
-                <th><strong>Teatime</strong></th>
-                <th><strong>Figurines</strong></th>
-                <th><strong>Waldo</strong></th>
-                <th><strong>Mean</strong></th>
+              <tr><td style="text-align:left;">Uniform</td><td>55.6</td><td>59.7</td></tr>
+              <tr><td style="text-align:left;">Flow Proxy</td><td>55.1</td><td>59.0</td></tr>
+              <tr class="highlight-row">
+                <td style="text-align:left;"><strong>Oracle SE(3) FPS</strong></td>
+                <td><strong class="best-score-text">57.1</strong></td>
+                <td><strong class="best-score-text">61.2</strong></td>
               </tr>
-            </thead>
-            <tbody>
-              <tr class="group-header"><td colspan="6"><em>Pixel-based</em></td></tr>
-              <tr><td style="text-align:left;">LangSplat</td><td>51.2</td><td>65.1</td><td>44.7</td><td>44.5</td><td>51.4</td></tr>
-              <tr><td style="text-align:left;">3DVLGS</td><td>61.4</td><td>73.5</td><td>58.1</td><td>54.8</td><td>62.0</td></tr>
-              <tr class="group-header"><td colspan="6"><em>Point-based</em></td></tr>
-              <tr><td style="text-align:left;">OpenGaussian</td><td>31.0</td><td>60.4</td><td>39.3</td><td>22.7</td><td>38.4</td></tr>
-              <tr><td style="text-align:left;">LUDVIG</td><td>42.3</td><td>58.6</td><td>58.0</td><td>42.8</td><td>50.4</td></tr>
-              <tr class="highlight-row"><td style="text-align:left;"><strong>CausalSplat (Ours)</strong></td><td>26.7</td><td><strong>73.0</strong></td><td><strong>75.3</strong></td><td>30.1</td><td><strong class="best-score-text">51.3</strong></td></tr>
             </tbody>
           </table>
-        </div>
-        <div class="box m-5" style="margin-top: 1.5rem;">
-          <img src="static/images/qualitative_lerf_ovs.png" alt="Qualitative search results on LERF" style="width: 100%;"/>
         </div>
       </div>
     </div>
@@ -529,11 +576,14 @@
         <span id="copy-label">Copy</span>
       </button>
     </div>
-    <pre id="bibtex-code"><code>@inproceedings{ding2026causalsplat,
-  title={CausalSplat: Towards Comprehensive Hierarchical Reasoning in 3D Gaussian Splatting},
-  author={Jiayu Ding and Meilu Song and Yun Chen and Wei Gao and Ge Li},
-  booktitle={Proceedings of the ACM International Conference on Multimedia},
-  year={2026}
+    <pre id="bibtex-code"><code>@misc{ding2026dyn3dunveilingresolvingegomotion,
+      title={Dyn-3D: Unveiling and Resolving Ego-Motion Ambiguity in Vision-Language Models}, 
+      author={Jiayu Ding and Zhuodong Liu and Lei Zhang and Manyu Xiong and Hongbo Jin and Haoran Tang and Hongbo Zhang and Changen Zhu and Wenbo Xing},
+      year={2026},
+      eprint={2609.01059},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV},
+      url={https://arxiv.org/abs/2609.01059}, 
 }</code></pre>
   </div>
 </section>

@@ -1,5 +1,6 @@
 .DS_Store
 *.pdf
+!static/pdf/paper.pdf
 CausalSplat/
 static/images/01.png
 static/images/02.png
