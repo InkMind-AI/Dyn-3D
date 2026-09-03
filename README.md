@@ -139,10 +139,13 @@ Please follow the licenses and access terms of the upstream projects and dataset
 ## 8. Citation
 
 ```bibtex
-@article{dyn3d2026,
-  title   = {Dyn-3D: Unveiling and Resolving Ego-Motion Ambiguity in Vision-Language Models},
-  author  = {Anonymous Authors},
-  journal = {arXiv preprint},
-  year    = {2026}
+@misc{ding2026dyn3dunveilingresolvingegomotion,
+      title={Dyn-3D: Unveiling and Resolving Ego-Motion Ambiguity in Vision-Language Models}, 
+      author={Jiayu Ding and Zhuodong Liu and Lei Zhang and Manyu Xiong and Hongbo Jin and Haoran Tang and Hongbo Zhang and Changen Zhu and Wenbo Xing},
+      year={2026},
+      eprint={2609.01059},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV},
+      url={https://arxiv.org/abs/2609.01059}, 
 }
 ```
